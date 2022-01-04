@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(@7566txbe!2z7^y_mg5^2x@6-tlc(+w3!(f0b3b4b1qezjz_1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["45.128.161.10"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'BookBotAdmin.apps.BookbotadminConfig',
+    'BookBotAdmin'
 ]
 
 MIDDLEWARE = [

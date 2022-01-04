@@ -7,9 +7,9 @@ from django.urls import reverse
 class Users(models.Model):
     userId = models.IntegerField(primary_key=True, verbose_name="ID пользователя в Telegram")
     balance = models.IntegerField(default=0, verbose_name="Баланс")
-    referral = models.ForeignKey("Users", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал")
+    referral = models.ForeignKey("Users", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал", blank=True)
     isBlock = models.BooleanField(default=False, verbose_name="Заблокировал ли бота")
-    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык")
+    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True)
     showProgress = models.BooleanField(default=False, verbose_name="Показывать ли прогресс сбора")
 
     def __repr__(self):

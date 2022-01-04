@@ -9,7 +9,7 @@ class Users(models.Model):
     balance = models.IntegerField(default=0, verbose_name="Баланс")
     referral = models.ForeignKey("Users", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал", blank=True)
     isBlock = models.BooleanField(default=False, verbose_name="Заблокировал ли бота")
-    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True)
+    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True, null=True)
     showProgress = models.BooleanField(default=False, verbose_name="Показывать ли прогресс сбора")
 
     def __repr__(self):

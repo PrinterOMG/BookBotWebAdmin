@@ -1,6 +1,8 @@
 from django.db import models
 import datetime
 
+from django.urls import reverse
+
 
 class Users(models.Model):
     userId = models.IntegerField(primary_key=True, verbose_name="ID пользователя в Telegram")
@@ -15,6 +17,9 @@ class Users(models.Model):
 
     def __str__(self):
         return f""
+
+    def get_absolute_url(self):
+        return reverse('get_user', kwargs={'user_id': self.pk})
 
     class Meta:
         verbose_name = "Пользователь"
@@ -75,7 +80,7 @@ class Stats(models.Model):
 
 class Subscribes(models.Model):
     subscribeId = models.BigAutoField(primary_key=True)
-    startDate = models.DateField(default=datetime.date.today(), verbose_name="Дата начала")
+    startDate = models.DateField(auto_now_add=True, verbose_name="Дата начала")
     endDate = models.DateField(verbose_name="Дата конца")
     isActive = models.BooleanField(default=True, verbose_name="Активна ли")
     subPriceId = models.ForeignKey("SubPrices", on_delete=models.CASCADE, verbose_name="Подписка")

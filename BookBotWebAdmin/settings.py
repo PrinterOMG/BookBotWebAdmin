@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'book_bot_db',
-        'USER': 'root',
-        'PASSWORD': '123',
+        'USER': 'test',
+        'PASSWORD': '~3i1%UR@',
         'HOST': 'localhost',
         'PORT': '3306',
     }

@@ -1,7 +1,4 @@
 from django.db import models
-import datetime
-
-from django.urls import reverse
 
 
 class Users(models.Model):
@@ -9,7 +6,7 @@ class Users(models.Model):
     balance = models.IntegerField(default=0, verbose_name="Баланс")
     referral = models.ForeignKey("Users", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал", blank=True)
     isBlock = models.BooleanField(default=False, verbose_name="Заблокировал ли бота")
-    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True, null=True)
+    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True)
     showProgress = models.BooleanField(default=False, verbose_name="Показывать ли прогресс сбора")
 
     def __repr__(self):
@@ -19,7 +16,7 @@ class Users(models.Model):
         return f""
 
     def get_absolute_url(self):
-        return reverse('get_user', kwargs={'user_id': self.pk})
+        return "Тута скачивание данных о пользователе"
 
     class Meta:
         verbose_name = "Пользователь"

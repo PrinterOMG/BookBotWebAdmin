@@ -10,3 +10,14 @@ class UsersAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Users, UsersAdmin)
+admin.site.register(models.Stats)
+admin.site.register(models.SubPrices)
+admin.site.register(models.Settings)
+admin.site.register(models.Filters)
+admin.site.register(models.Mailing)
+admin.site.register(models.Promocodes)
+admin.site.register(models.Posts)
+admin.site.register(models.Books)
+admin.site.register(models.Languages)
+admin.site.register(models.Subscribes)
+admin.site.register(models.Questions)

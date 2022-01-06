@@ -5,19 +5,18 @@ class Users(models.Model):
     userId = models.IntegerField(primary_key=True, verbose_name="ID пользователя в Telegram")
     username = models.CharField(max_length=128, verbose_name="Имя пользователя")
     balance = models.IntegerField(default=0, verbose_name="Баланс")
-    referral = models.ForeignKey("Users", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал", blank=True)
+    referral = models.ForeignKey("Referrals", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал", blank=True)
     isBlock = models.BooleanField(default=False, verbose_name="Заблокировал ли бота")
     languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True)
     showProgress = models.BooleanField(default=False, verbose_name="Показывать ли прогресс сбора")
     deposit = models.IntegerField(default=0, verbose_name="Депозит")
     subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
-    cameFrom = models.CharField(default=None, max_length=128, verbose_name="Откуда перешёл на бота")
 
     def __repr__(self):
-        return f"Пользователь"
+        return self.username
 
     def __str__(self):
-        return f""
+        return self.username
 
     def get_absolute_url(self):
         return "Тута скачивание данных о пользователе"
@@ -35,10 +34,10 @@ class Promocodes(models.Model):
     discount = models.IntegerField(verbose_name="Скидка")
 
     def __repr__(self):
-        return f"Промокод"
+        return self.promocode
 
     def __str__(self):
-        return f""
+        return self.promocode
 
     class Meta:
         verbose_name = "Промокод"
@@ -52,10 +51,10 @@ class Questions(models.Model):
     isAnswered = models.BooleanField(default=False, verbose_name="Отвечен ли")
 
     def __repr__(self):
-        return f"Вопрос"
+        return f"Вопрос №{self.pk}"
 
     def __str__(self):
-        return f""
+        return f"Вопрос №{self.pk}"
 
     class Meta:
         verbose_name = "Вопрос"
@@ -182,39 +181,23 @@ class SubPrices(models.Model):
 class Languages(models.Model):
     languageId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название языка")
-    # backButton = models.CharField(max_length=64, verbose_name="")
-    # mainMenu = models.TextField(verbose_name="")
-    # infoButton = models.CharField(max_length=64, verbose_name="")
-    # archiveButton = models.CharField(max_length=64, verbose_name="")
-    # balanceButton = models.CharField(max_length=64, verbose_name="")
-    # fundraisingButton = models.CharField(max_length=64, verbose_name="")
-    # subscribeButton = models.CharField(max_length=64, verbose_name="")
-    # makeQuestionButton = models.CharField(max_length=64, verbose_name="")
-    # changeLanButton = models.CharField(max_length=64, verbose_name="")
-    # subscribeMenu = models.TextField(verbose_name="")
-    # buySubscribeButton = models.CharField(max_length=64, verbose_name="")
-    # promocodeButton = models.CharField(max_length=64, verbose_name="")
-    # promocodeErrot = models.TextField(verbose_name="")
-    # promocodeOk = models.TextField(verbose_name="")
-    # paymentMethod = models.TextField(verbose_name="")
-    # infoText = models.TextField(verbose_name="")
-    # bookBuyMenu = models.TextField(verbose_name="")
-    # booksList = models.TextField(verbose_name="")
-    # bookInfo = models.TextField(verbose_name="")
-    # downloadBookButton = models.CharField(max_length=64, verbose_name="")
-    # downloadError = models.TextField(verbose_name="")
-    # downloadOk = models.TextField(verbose_name="")
-    # buyButton = models.CharField(max_length=64, verbose_name="")
+    mainMenu = models.TextField(verbose_name="Текст в главном меню")
 
     def __repr__(self):
-        return f"Язык"
+        return self.name
 
     def __str__(self):
-        return f""
+        return self.name
 
     class Meta:
         verbose_name = "Язык"
         verbose_name_plural = "Языки"
+
+
+class Referrals(models.Model):
+    referralId = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=128, verbose_name="Название")
+    code = models.CharField(max_length=128, verbose_name="Код")
 
 
 #  НЕ НУЖНО ОТОБРАЖАТЬ
@@ -233,17 +216,3 @@ class UsersAndBooks(models.Model):
         verbose_name = "Связь"
         verbose_name_plural = "Связи"
 #  НЕ НУЖНО ОТОБРАЖАТЬ
-
-
-class Settings(models.Model):
-    text = models.TextField(verbose_name="Текст для кнопки 2")
-
-    def __repr__(self):
-        return f"Настройки"
-
-    def __str__(self):
-        return f"Настройки"
-
-    class Meta:
-        verbose_name = "Настройки"
-        verbose_name_plural = "Настройки"

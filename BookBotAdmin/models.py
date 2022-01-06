@@ -199,6 +199,16 @@ class Referrals(models.Model):
     name = models.CharField(max_length=128, verbose_name="Название")
     code = models.CharField(max_length=128, verbose_name="Код")
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Реферальный код"
+        verbose_name_plural = "Реферальные коды"
+
 
 #  НЕ НУЖНО ОТОБРАЖАТЬ
 class UsersAndBooks(models.Model):

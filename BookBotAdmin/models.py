@@ -180,7 +180,7 @@ class SubPrices(models.Model):
 
 class Languages(models.Model):
     languageId = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=64, verbose_name="")
+    name = models.CharField(max_length=64, verbose_name="Название языка")
     # backButton = models.CharField(max_length=64, verbose_name="")
     # mainMenu = models.TextField(verbose_name="")
     # infoButton = models.CharField(max_length=64, verbose_name="")

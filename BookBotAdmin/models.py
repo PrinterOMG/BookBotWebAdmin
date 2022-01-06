@@ -11,6 +11,7 @@ class Users(models.Model):
     showProgress = models.BooleanField(default=False, verbose_name="Показывать ли прогресс сбора")
     deposit = models.IntegerField(default=0, verbose_name="Депозит")
     subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
+    cameFrom = models.CharField(default=None, max_length=128, verbose_name="Откуда перешёл на бота")
 
     def __repr__(self):
         return f"Пользователь"

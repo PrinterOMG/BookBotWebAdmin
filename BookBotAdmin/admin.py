@@ -11,6 +11,7 @@ class UsersAdmin(admin.ModelAdmin):
 
 class LanguagesAdmin(admin.ModelAdmin):
     list_display = ["name"]
+    list_display_links = ["name"]
 
 
 admin.site.register(models.Users, UsersAdmin)
@@ -21,6 +22,6 @@ admin.site.register(models.Mailing)
 admin.site.register(models.Promocodes)
 admin.site.register(models.Posts)
 admin.site.register(models.Books)
-admin.site.register(models.Languages)
+admin.site.register(models.Languages, LanguagesAdmin)
 admin.site.register(models.Subscribes)
 admin.site.register(models.Questions)

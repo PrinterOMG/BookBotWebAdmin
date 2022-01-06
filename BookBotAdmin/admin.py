@@ -14,6 +14,10 @@ class LanguagesAdmin(admin.ModelAdmin):
     list_display_links = ["name"]
 
 
+class ReferralAdmin(admin.ModelAdmin):
+    list_display = ["name", "code", "registerCount"]
+
+
 admin.site.register(models.Users, UsersAdmin)
 admin.site.register(models.SubPrices)
 admin.site.register(models.Filters)

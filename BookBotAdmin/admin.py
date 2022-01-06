@@ -9,8 +9,11 @@ class UsersAdmin(admin.ModelAdmin):
     # list_filter = ("balance", "referral", "isblock")
 
 
+class LanguagesAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+
+
 admin.site.register(models.Users, UsersAdmin)
-admin.site.register(models.Stats)
 admin.site.register(models.SubPrices)
 admin.site.register(models.Settings)
 admin.site.register(models.Filters)

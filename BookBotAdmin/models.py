@@ -3,11 +3,14 @@ from django.db import models
 
 class Users(models.Model):
     userId = models.IntegerField(primary_key=True, verbose_name="ID пользователя в Telegram")
+    username = models.CharField(max_length=128, verbose_name="Имя пользователя")
     balance = models.IntegerField(default=0, verbose_name="Баланс")
     referral = models.ForeignKey("Users", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал", blank=True)
     isBlock = models.BooleanField(default=False, verbose_name="Заблокировал ли бота")
     languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True)
     showProgress = models.BooleanField(default=False, verbose_name="Показывать ли прогресс сбора")
+    deposit = models.IntegerField(default=0, verbose_name="Депозит")
+    subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
 
     def __repr__(self):
         return f"Пользователь"
@@ -56,23 +59,6 @@ class Questions(models.Model):
     class Meta:
         verbose_name = "Вопрос"
         verbose_name_plural = "Вопросы"
-
-
-class Stats(models.Model):
-    statsId = models.BigAutoField(primary_key=True)
-    userId = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="Пользователь")
-    deposit = models.IntegerField(default=0, verbose_name="Депозит")
-    subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
-
-    def __repr__(self):
-        return f"Статистика"
-
-    def __str__(self):
-        return f""
-
-    class Meta:
-        verbose_name = "Статистика"
-        verbose_name_plural = "Статистика"
 
 
 class Subscribes(models.Model):
@@ -194,7 +180,30 @@ class SubPrices(models.Model):
 
 class Languages(models.Model):
     languageId = models.BigAutoField(primary_key=True)
-    file = models.FileField(upload_to="languages/", verbose_name="Файл с текстами")
+    name = models.CharField(max_length=64, verbose_name="")
+    # backButton = models.CharField(max_length=64, verbose_name="")
+    # mainMenu = models.TextField(verbose_name="")
+    # infoButton = models.CharField(max_length=64, verbose_name="")
+    # archiveButton = models.CharField(max_length=64, verbose_name="")
+    # balanceButton = models.CharField(max_length=64, verbose_name="")
+    # fundraisingButton = models.CharField(max_length=64, verbose_name="")
+    # subscribeButton = models.CharField(max_length=64, verbose_name="")
+    # makeQuestionButton = models.CharField(max_length=64, verbose_name="")
+    # changeLanButton = models.CharField(max_length=64, verbose_name="")
+    # subscribeMenu = models.TextField(verbose_name="")
+    # buySubscribeButton = models.CharField(max_length=64, verbose_name="")
+    # promocodeButton = models.CharField(max_length=64, verbose_name="")
+    # promocodeErrot = models.TextField(verbose_name="")
+    # promocodeOk = models.TextField(verbose_name="")
+    # paymentMethod = models.TextField(verbose_name="")
+    # infoText = models.TextField(verbose_name="")
+    # bookBuyMenu = models.TextField(verbose_name="")
+    # booksList = models.TextField(verbose_name="")
+    # bookInfo = models.TextField(verbose_name="")
+    # downloadBookButton = models.CharField(max_length=64, verbose_name="")
+    # downloadError = models.TextField(verbose_name="")
+    # downloadOk = models.TextField(verbose_name="")
+    # buyButton = models.CharField(max_length=64, verbose_name="")
 
     def __repr__(self):
         return f"Язык"

@@ -33,6 +33,7 @@ class Promocodes(models.Model):
     whoUsed = models.ForeignKey("Users", on_delete=models.CASCADE, default=None, null=True, verbose_name="Кто использовал", blank=True)
     discount = models.IntegerField(verbose_name="Скидка")
     subPriceId = models.ManyToManyField("SubPrices", null=True, verbose_name="На какие подписки")
+    isActive = models.BooleanField(default=False, verbose_name="Активен ли")
 
     def __repr__(self):
         return self.promocode
@@ -192,6 +193,9 @@ class Languages(models.Model):
     makeQuestionButton = models.CharField(max_length=64, verbose_name="Кнопка 'Задать вопрос'")
     balanceButton = models.CharField(max_length=64, verbose_name="Кнопка 'Баланс'")
     changeLanguageOk = models.CharField(max_length=128, verbose_name="Уведомление об успешной смене языка")
+    subscribesMenu = models.TextField(verbose_name="Меню покупки подписки")
+    buySubButton = models.CharField(max_length=64, verbose_name="Кнопка покупки подписки ({duration} - срок)")
+    usePromocodeButton = models.CharField(max_length=64, verbose_name="Кнопка использования промокода")
 
     def __repr__(self):
         return self.name

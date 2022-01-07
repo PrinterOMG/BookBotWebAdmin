@@ -199,6 +199,7 @@ class Referrals(models.Model):
     name = models.CharField(max_length=128, verbose_name="Название")
     code = models.CharField(max_length=128, verbose_name="Код")
     registerCount = models.IntegerField(default=0, verbose_name="Кол-во регистраций")
+    subPriceId = models.ManyToManyField("SubPrices", null=True, verbose_name="На какие подписки")
 
     def __repr__(self):
         return self.name

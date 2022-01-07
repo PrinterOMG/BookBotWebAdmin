@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.forms import CheckboxSelectMultiple
+from django.db import models as md
 from . import models
 
 
@@ -24,6 +26,9 @@ class SubPricesAdmin(admin.ModelAdmin):
 
 class PromocodesAdmin(admin.ModelAdmin):
     list_display = ["promocode"]
+    formfield_overrides = {
+        md.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
 
 
 admin.site.register(models.Users, UsersAdmin)

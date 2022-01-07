@@ -150,6 +150,7 @@ class Books(models.Model):
     priceAfterDone = models.IntegerField(verbose_name="Цена после сбора")
     priceForSub = models.IntegerField(verbose_name="Цена для подписчика")
     priceCommon = models.IntegerField(verbose_name="Цена для всех")
+    userId = models.ManyToManyField("Users", verbose_name="Заплатившие пользователи")
 
     def __repr__(self):
         return f"Книга"

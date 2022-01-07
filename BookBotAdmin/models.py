@@ -184,6 +184,12 @@ class Languages(models.Model):
     languageId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название языка")
     mainMenu = models.TextField(verbose_name="Текст в главном меню")
+    subscribesButton = models.CharField(max_length=64, verbose_name="Кнопка перехода на покупку подписок")
+    infoButton = models.CharField(max_length=64, verbose_name="Кнопка с информацией")
+    fundraisingButton = models.CharField(max_length=64, verbose_name="Кнопка перехода на фандрайзинг")
+    booksArchiveButton = models.CharField(max_length=64, verbose_name="Кнопка перехода на архив книг")
+    makeQuestionButton = models.CharField(max_length=64, verbose_name="Кнопка 'Задать вопрос'")
+    balanceButton = models.CharField(max_length=64, verbose_name="Кнопка 'Баланс'")
 
     def __repr__(self):
         return self.name

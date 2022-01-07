@@ -32,6 +32,7 @@ class Promocodes(models.Model):
     isUsed = models.BooleanField(default=False, verbose_name="Использован ли")
     whoUsed = models.ForeignKey("Users", on_delete=models.CASCADE, default=None, null=True, verbose_name="Кто использовал")
     discount = models.IntegerField(verbose_name="Скидка")
+    subPriceId = models.ManyToManyField("SubPrices", null=True, verbose_name="На какие подписки")
 
     def __repr__(self):
         return self.promocode
@@ -168,10 +169,10 @@ class SubPrices(models.Model):
     duration = models.IntegerField(verbose_name="Месяцы")
 
     def __repr__(self):
-        return f"Цена на подписку"
+        return self.name
 
     def __str__(self):
-        return f""
+        return self.name
 
     class Meta:
         verbose_name = "Цена на подписку"
@@ -199,7 +200,6 @@ class Referrals(models.Model):
     name = models.CharField(max_length=128, verbose_name="Название")
     code = models.CharField(max_length=128, verbose_name="Код")
     registerCount = models.IntegerField(default=0, verbose_name="Кол-во регистраций")
-    subPriceId = models.ManyToManyField("SubPrices", null=True, verbose_name="На какие подписки")
 
     def __repr__(self):
         return self.name

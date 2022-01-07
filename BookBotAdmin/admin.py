@@ -18,11 +18,19 @@ class ReferralAdmin(admin.ModelAdmin):
     list_display = ["name", "code", "registerCount"]
 
 
+class SubPricesAdmin(admin.ModelAdmin):
+    list_display = ["name", "value", "duration"]
+
+
+class PromocodesAdmin(admin.ModelAdmin):
+    list_display = ["promocode"]
+
+
 admin.site.register(models.Users, UsersAdmin)
-admin.site.register(models.SubPrices)
+admin.site.register(models.SubPrices, SubPricesAdmin)
 admin.site.register(models.Filters)
 admin.site.register(models.Mailing)
-admin.site.register(models.Promocodes)
+admin.site.register(models.Promocodes, PromocodesAdmin)
 admin.site.register(models.Posts)
 admin.site.register(models.Books)
 admin.site.register(models.Languages, LanguagesAdmin)

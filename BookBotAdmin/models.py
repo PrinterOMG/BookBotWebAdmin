@@ -196,6 +196,11 @@ class Languages(models.Model):
     subscribesMenu = models.TextField(verbose_name="Меню покупки подписки")
     buySubButton = models.CharField(max_length=64, verbose_name="Кнопка покупки подписки ({duration} - срок)")
     usePromocodeButton = models.CharField(max_length=64, verbose_name="Кнопка использования промокода")
+    promoInput = models.TextField(verbose_name="Инструкция по введению промокода")
+    promoNotExists = models.TextField(verbose_name="Ошибка отсутствия промокода")
+    promoAlreadyUse = models.TextField(verbose_name="Ошибка имения активного промокода")
+    promoOk = models.TextField(verbose_name="Уведомление об успешной активации промокода")
+    info = models.TextField(verbose_name="Информация")
 
     def __repr__(self):
         return self.name

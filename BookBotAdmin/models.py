@@ -183,6 +183,7 @@ class SubPrices(models.Model):
 class Languages(models.Model):
     languageId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название языка")
+    backButton = models.CharField(max_length=64, verbose_name="Кнопка 'Назад'")
     mainMenu = models.TextField(verbose_name="Текст в главном меню")
     subscribesButton = models.CharField(max_length=64, verbose_name="Кнопка перехода на покупку подписок")
     infoButton = models.CharField(max_length=64, verbose_name="Кнопка с информацией")
@@ -190,6 +191,7 @@ class Languages(models.Model):
     booksArchiveButton = models.CharField(max_length=64, verbose_name="Кнопка перехода на архив книг")
     makeQuestionButton = models.CharField(max_length=64, verbose_name="Кнопка 'Задать вопрос'")
     balanceButton = models.CharField(max_length=64, verbose_name="Кнопка 'Баланс'")
+    changeLanguageOk = models.CharField(max_length=128, verbose_name="Уведомление об успешной смене языка")
 
     def __repr__(self):
         return self.name

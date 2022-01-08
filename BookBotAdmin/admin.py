@@ -33,13 +33,13 @@ class PromocodesAdmin(admin.ModelAdmin):
 
 class SettingsAdmin(admin.ModelAdmin):
     list_display = ["name"]
-    # fields = ["questionSymbolsLimit", "registerMenu"]
-    #
-    # def has_add_permission(self, request):
-    #     return False
-    #
-    # def has_delete_permission(self, request, obj=None):
-    #     return False
+    fields = ["questionSymbolsLimit", "registerMenu"]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(models.Users, UsersAdmin)

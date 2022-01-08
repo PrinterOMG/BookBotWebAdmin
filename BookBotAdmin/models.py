@@ -28,7 +28,7 @@ class Users(models.Model):
 
 class Promocodes(models.Model):
     promocodeId = models.BigAutoField(primary_key=True)
-    promocode = models.CharField(max_length=64, verbose_name="Промокод")
+    promocode = models.CharField(max_length=64, verbose_name="Промокод", unique=True)
     isUsed = models.BooleanField(default=False, verbose_name="Использован ли")
     whoUsed = models.ForeignKey("Users", on_delete=models.CASCADE, default=None, null=True, verbose_name="Кто использовал", blank=True)
     discount = models.IntegerField(verbose_name="Скидка")
@@ -185,6 +185,7 @@ class Languages(models.Model):
     languageId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название языка")
     backButton = models.CharField(max_length=64, verbose_name="Кнопка 'Назад'")
+    okButton = models.CharField(max_length=64, verbose_name="Кнопка 'Ок'")
     mainMenu = models.TextField(verbose_name="Текст в главном меню")
     subscribesButton = models.CharField(max_length=64, verbose_name="Кнопка перехода на покупку подписок")
     infoButton = models.CharField(max_length=64, verbose_name="Кнопка с информацией")
@@ -197,9 +198,11 @@ class Languages(models.Model):
     buySubButton = models.CharField(max_length=64, verbose_name="Кнопка покупки подписки ({duration} - срок)")
     usePromocodeButton = models.CharField(max_length=64, verbose_name="Кнопка использования промокода")
     promoInput = models.TextField(verbose_name="Инструкция по введению промокода")
+    cancelPromoButton = models.CharField(verbose_name="Кнопка для отмены активного промокода")
+    cancelPromoOk = models.TextField(verbose_name="Уведомлении об успешной отмене активного промокода")
     promoNotExists = models.TextField(verbose_name="Ошибка отсутствия промокода")
-    promoAlreadyUse = models.TextField(verbose_name="Ошибка имения активного промокода")
-    promoOk = models.TextField(verbose_name="Уведомление об успешной активации промокода")
+    promoAlreadyUsed = models.TextField(verbose_name="Промокод уже использован")
+    promoOk = models.TextField(verbose_name="Уведомление об успешной активации промокода ({code}, {discount})")
     info = models.TextField(verbose_name="Информация")
 
     def __repr__(self):
@@ -228,21 +231,3 @@ class Referrals(models.Model):
     class Meta:
         verbose_name = "Реферальный код"
         verbose_name_plural = "Реферальные коды"
-
-
-#  НЕ НУЖНО ОТОБРАЖАТЬ
-class UsersAndBooks(models.Model):
-    connectionId = models.BigAutoField(primary_key=True)
-    userId = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="Пользователь")
-    bookId = models.ForeignKey("Books", on_delete=models.CASCADE, verbose_name="Книга")
-
-    def __repr__(self):
-        return f"Связь"
-
-    def __str__(self):
-        return f""
-
-    class Meta:
-        verbose_name = "Связь"
-        verbose_name_plural = "Связи"
-#  НЕ НУЖНО ОТОБРАЖАТЬ

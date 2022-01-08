@@ -198,7 +198,7 @@ class Languages(models.Model):
     buySubButton = models.CharField(max_length=64, verbose_name="Кнопка покупки подписки ({duration} - срок)")
     usePromocodeButton = models.CharField(max_length=64, verbose_name="Кнопка использования промокода")
     promoInput = models.TextField(verbose_name="Инструкция по введению промокода")
-    cancelPromoButton = models.CharField(verbose_name="Кнопка для отмены активного промокода")
+    cancelPromoButton = models.CharField(max_length=64, verbose_name="Кнопка для отмены активного промокода")
     cancelPromoOk = models.TextField(verbose_name="Уведомлении об успешной отмене активного промокода")
     promoNotExists = models.TextField(verbose_name="Ошибка отсутствия промокода")
     promoAlreadyUsed = models.TextField(verbose_name="Промокод уже использован")

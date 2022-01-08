@@ -187,6 +187,7 @@ class Languages(models.Model):
     name = models.CharField(max_length=64, verbose_name="Название языка")
     backButton = models.CharField(max_length=64, verbose_name="Кнопка 'Назад'")
     okButton = models.CharField(max_length=64, verbose_name="Кнопка 'Ок'")
+    cancelButton = models.CharField(max_length=64, verbose_name="Кнопка отмены")
     mainMenu = models.TextField(verbose_name="Текст в главном меню")
     changeLanguageButton = models.CharField(max_length=64, verbose_name="Кнопка смены яызка")
     subscribesButton = models.CharField(max_length=64, verbose_name="Кнопка перехода на покупку подписок")

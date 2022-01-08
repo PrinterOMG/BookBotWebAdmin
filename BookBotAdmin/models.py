@@ -195,7 +195,7 @@ class Languages(models.Model):
     balanceButton = models.CharField(max_length=64, verbose_name="Кнопка 'Баланс'")
     changeLanguageOk = models.CharField(max_length=128, verbose_name="Уведомление об успешной смене языка")
     subscribesMenu = models.TextField(verbose_name="Меню покупки подписки")
-    buySubButton = models.CharField(max_length=64, verbose_name="Кнопка покупки подписки ({duration} - срок)")
+    buySubButton = models.CharField(max_length=64, verbose_name="Кнопка покупки подписки ({duration} - срок, {price} - цена)")
     usePromocodeButton = models.CharField(max_length=64, verbose_name="Кнопка использования промокода")
     promoInput = models.TextField(verbose_name="Инструкция по введению промокода")
     cancelPromoButton = models.CharField(max_length=64, verbose_name="Кнопка для отмены активного промокода")
@@ -204,6 +204,8 @@ class Languages(models.Model):
     promoAlreadyUsed = models.TextField(verbose_name="Промокод уже использован")
     promoOk = models.TextField(verbose_name="Уведомление об успешной активации промокода ({code}, {discount})")
     info = models.TextField(verbose_name="Информация")
+    balanceMenu = models.TextField(verbose_name="Меню баланса ({balance})")
+    topUpButton = models.CharField(max_length=64, verbose_name="Кнопка для пополнения баланса")
 
     def __repr__(self):
         return self.name
@@ -231,3 +233,19 @@ class Referrals(models.Model):
     class Meta:
         verbose_name = "Реферальный код"
         verbose_name_plural = "Реферальные коды"
+
+
+class Settings(models.Model):
+    name = models.CharField(max_length=64)
+    questionSymbolsLimit = models.IntegerField(default=300, verbose_name="Лимит символов в вопросе (0 для отключения)")
+    registerMenu = models.TextField(verbose_name="Меню выбора языка при регистрации")
+
+    def __repr__(self):
+        return "Настройки"
+
+    def __str__(self):
+        return "Настройки"
+
+    class Meta:
+        verbose_name = "Настройки"
+        verbose_name_plural = "Настройки"

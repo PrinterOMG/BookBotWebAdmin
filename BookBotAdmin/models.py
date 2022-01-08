@@ -210,6 +210,7 @@ class Languages(models.Model):
     topUpButton = models.CharField(max_length=64, verbose_name="Кнопка для пополнения баланса")
     questionInput = models.TextField(verbose_name="Инструкция по введению вопроса")
     questionLimitError = models.TextField(verbose_name="Ошибка лимита символов ({limit})")
+    questionConfirm = models.TextField(verbose_name="Подтверждение отправки вопроса ({question})")
     questionOk = models.TextField(verbose_name="Уведомление об успешной отправке вопроса")
 
     def __repr__(self):

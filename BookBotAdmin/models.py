@@ -51,6 +51,7 @@ class Questions(models.Model):
     text = models.TextField(verbose_name="Текст")
     answer = models.TextField(default=None, null=True, verbose_name="Ответ")
     isAnswered = models.BooleanField(default=False, verbose_name="Отвечен ли")
+    fromUser = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="От пользователя")
 
     def __repr__(self):
         return f"Вопрос №{self.pk}"
@@ -207,6 +208,9 @@ class Languages(models.Model):
     info = models.TextField(verbose_name="Информация")
     balanceMenu = models.TextField(verbose_name="Меню баланса ({balance})")
     topUpButton = models.CharField(max_length=64, verbose_name="Кнопка для пополнения баланса")
+    questionInput = models.TextField(verbose_name="Инструкция по введению вопроса")
+    questionLimitError = models.TextField(verbose_name="Ошибка лимита символов ({limit})")
+    questionOk = models.TextField(verbose_name="Уведомление об успешной отправке вопроса")
 
     def __repr__(self):
         return self.name
@@ -240,6 +244,7 @@ class Settings(models.Model):
     name = models.CharField(max_length=64)
     questionSymbolsLimit = models.IntegerField(default=300, verbose_name="Лимит символов в вопросе (0 для отключения)")
     registerMenu = models.TextField(verbose_name="Меню выбора языка при регистрации")
+    topUpLimit = models.IntegerField(default=10000, verbose_name="Лимит пополнения баланса")
 
     def __repr__(self):
         return "Настройки"

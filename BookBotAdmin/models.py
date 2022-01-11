@@ -11,6 +11,7 @@ class Users(models.Model):
     showProgress = models.BooleanField(default=False, verbose_name="Показывать ли прогресс сбора")
     deposit = models.IntegerField(default=0, verbose_name="Депозит")
     subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
+    notEndPayment = models.BooleanField(verbose_name="Не закончил оплату")
 
     def __repr__(self):
         return self.username
@@ -152,7 +153,7 @@ class Books(models.Model):
     priceAfterDone = models.IntegerField(verbose_name="Цена после сбора")
     priceForSub = models.IntegerField(verbose_name="Цена для подписчика")
     priceCommon = models.IntegerField(verbose_name="Цена для всех")
-    userId = models.ManyToManyField("Users", verbose_name="Заплатившие пользователи")
+    userId = models.ManyToManyField("Users", verbose_name="Заплатившие пользователи", blank=True, null=True)
 
     def __repr__(self):
         return f"Книга"
@@ -184,6 +185,7 @@ class SubPrices(models.Model):
 
 class Languages(models.Model):
     languageId = models.BigAutoField(primary_key=True)
+    bookFile = models.FileField(verbose_name="", upload_to="static/books/")
     name = models.CharField(max_length=64, verbose_name="Название языка")
     backButton = models.CharField(max_length=64, verbose_name="Кнопка 'Назад'")
     okButton = models.CharField(max_length=64, verbose_name="Кнопка 'Ок'")
@@ -212,11 +214,17 @@ class Languages(models.Model):
     questionInput = models.TextField(verbose_name="Инструкция по введению вопроса")
     questionLimitError = models.TextField(verbose_name="Ошибка лимита символов ({limit})")
     questionOk = models.TextField(verbose_name="Уведомление об успешной отправке вопроса")
+    answerText = models.TextField(verbose_name="Сообщение с ответом на вопрос ({question}, {answer})")
     paymentMenu = models.TextField(verbose_name="Меню выбора способа оплаты")
     telegramPayButton = models.CharField(max_length=64, verbose_name="Оплата через телеграм")
     yookassaButton = models.CharField(max_length=64, verbose_name="Оплата через ЮКассу")
     paypalButton = models.CharField(max_length=64, verbose_name="Оплата через PayPal")
     sbpButton = models.CharField(max_length=64, verbose_name="Оплата через СБП")
+    booksArchiveMenu = models.TextField(verbose_name="Меню архива книг")
+    yearButton = models.CharField(max_length=64, verbose_name="Поиск по году")
+    genreButton = models.CharField(max_length=64, verbose_name="Поиск по жанру")
+    authorButton = models.CharField(max_length=64, verbose_name="Поиск по автору")
+    titleButton = models.CharField(max_length=64, verbose_name="Поиск по названию")
 
     def __repr__(self):
         return self.name
@@ -261,3 +269,14 @@ class Settings(models.Model):
     class Meta:
         verbose_name = "Настройки"
         verbose_name_plural = "Настройки"
+
+
+class Operations(models.Model):
+    operationId = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="Пользователь")
+    type = models.CharField(max_length=128, verbose_name="Тип")
+    topUp = models.IntegerField(blank=True, null=True, verbose_name="Сумма пополнения")
+    bookFund = models.ForeignKey("Books", on_delete=models.CASCADE, verbose_name="Книга из фандрайзинга", blank=True, null=True)
+    bookArchive = models.IntegerField(blank=True, null=True, verbose_name="Книга из архива")
+    subscribe = models.ForeignKey("SubPrices", on_delete=models.CASCADE, verbose_name="Подписка")
+    paymentMethod = models.CharField(max_length=128, verbose_name="Способ оплаты", blank=True, null=True)

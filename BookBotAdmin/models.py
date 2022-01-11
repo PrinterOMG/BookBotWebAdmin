@@ -211,8 +211,12 @@ class Languages(models.Model):
     topUpButton = models.CharField(max_length=64, verbose_name="Кнопка для пополнения баланса")
     questionInput = models.TextField(verbose_name="Инструкция по введению вопроса")
     questionLimitError = models.TextField(verbose_name="Ошибка лимита символов ({limit})")
-    questionConfirm = models.TextField(verbose_name="Подтверждение отправки вопроса ({question})")
     questionOk = models.TextField(verbose_name="Уведомление об успешной отправке вопроса")
+    paymentMenu = models.TextField(verbose_name="Меню выбора способа оплаты")
+    telegramPayButton = models.CharField(max_length=64, verbose_name="Оплата через телеграм")
+    yookassaButton = models.CharField(max_length=64, verbose_name="Оплата через ЮКассу")
+    paypalButton = models.CharField(max_length=64, verbose_name="Оплата через PayPal")
+    sbpButton = models.CharField(max_length=64, verbose_name="Оплата через СБП")
 
     def __repr__(self):
         return self.name

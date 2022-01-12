@@ -227,7 +227,10 @@ class Languages(models.Model):
     genreButton = models.CharField(max_length=64, verbose_name="Поиск по жанру")
     authorButton = models.CharField(max_length=64, verbose_name="Поиск по автору")
     titleButton = models.CharField(max_length=64, verbose_name="Поиск по названию")
+    searchInput = models.TextField(verbose_name="Инструкция по вводу поиска")
     searchError = models.TextField(verbose_name="Ничего не найдено")
+    searchResult = models.TextField(verbose_name="Сообщение с результатом поиска ({books})")
+    bookFormat = models.TextField(verbose_name="Формат вывода книги ({id}, {author}, {title}, {year}, {genre}, {price})")
 
     def __repr__(self):
         return self.name

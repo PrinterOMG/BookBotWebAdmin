@@ -211,6 +211,8 @@ class Languages(models.Model):
     info = models.TextField(verbose_name="Информация")
     balanceMenu = models.TextField(verbose_name="Меню баланса ({balance})")
     topUpButton = models.CharField(max_length=64, verbose_name="Кнопка для пополнения баланса")
+    topUpInput = models.TextField(verbose_name="Инструкция по введению суммы пополнения")
+    topUpError = models.TextField(verbose_name="Указана неверная сумма для пополнения")
     questionInput = models.TextField(verbose_name="Инструкция по введению вопроса")
     questionLimitError = models.TextField(verbose_name="Ошибка лимита символов ({limit})")
     questionOk = models.TextField(verbose_name="Уведомление об успешной отправке вопроса")
@@ -225,6 +227,7 @@ class Languages(models.Model):
     genreButton = models.CharField(max_length=64, verbose_name="Поиск по жанру")
     authorButton = models.CharField(max_length=64, verbose_name="Поиск по автору")
     titleButton = models.CharField(max_length=64, verbose_name="Поиск по названию")
+    searchError = models.TextField(verbose_name="Ничего не найдено")
 
     def __repr__(self):
         return self.name

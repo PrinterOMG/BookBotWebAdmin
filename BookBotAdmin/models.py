@@ -229,8 +229,14 @@ class Languages(models.Model):
     titleButton = models.CharField(max_length=64, verbose_name="Поиск по названию")
     searchInput = models.TextField(verbose_name="Инструкция по вводу поиска")
     searchError = models.TextField(verbose_name="Ничего не найдено")
-    searchResult = models.TextField(verbose_name="Сообщение с результатом поиска ({books})")
+    searchTextResult = models.TextField(verbose_name="Сообщение с результатом поиска в сообщении ({books})")
+    searchFileResult = models.TextField(verbose_name="Сообщение с результатом поиска в файле")
     bookFormat = models.TextField(verbose_name="Формат вывода книги ({id}, {author}, {title}, {year}, {genre}, {price})")
+    bookInputError = models.TextField(verbose_name="Ошибка ввода номера книги")
+    bookBuyMenu = models.TextField(verbose_name="Меню покупки книги ({book})")
+    buyBookButton = models.CharField(max_length=64, verbose_name="Кнопка покупки книги")
+    buyBookError = models.TextField(verbose_name="Ошибка при покупке книги")
+    buyBookOk = models.TextField(verbose_name="Успешная покупка книги")
 
     def __repr__(self):
         return self.name

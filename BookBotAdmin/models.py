@@ -143,6 +143,7 @@ class Posts(models.Model):
 
 class Books(models.Model):
     bookId = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=128, verbose_name="Название")
     description = models.TextField(verbose_name="Описание")
     startDate = models.DateField(verbose_name="Дата начала")
     endDate = models.DateField(verbose_name="Дата конца")
@@ -231,12 +232,20 @@ class Languages(models.Model):
     searchError = models.TextField(verbose_name="Ничего не найдено")
     searchTextResult = models.TextField(verbose_name="Сообщение с результатом поиска в сообщении ({books})")
     searchFileResult = models.TextField(verbose_name="Сообщение с результатом поиска в файле")
-    bookFormat = models.TextField(verbose_name="Формат вывода книги ({id}, {author}, {title}, {year}, {genre}, {price})")
+    bookArchiveFormat = models.TextField(verbose_name="Формат вывода книги из архива ({id}, {author}, {title}, {year}, {genre}, {price})")
     bookInputError = models.TextField(verbose_name="Ошибка ввода номера книги")
     bookBuyMenu = models.TextField(verbose_name="Меню покупки книги ({book})")
-    buyBookButton = models.CharField(max_length=64, verbose_name="Кнопка покупки книги")
+    payButton = models.CharField(max_length=64, verbose_name="Кнопка оплаты")
     buyBookError = models.TextField(verbose_name="Ошибка при покупке книги")
     buyBookOk = models.TextField(verbose_name="Успешная покупка книги")
+    payMenu = models.TextField(verbose_name="Сообщение при оплате")
+    payError = models.TextField(verbose_name="Ошибка оплаты")
+    payOk = models.TextField(verbose_name="Успешная оплата")
+    checkPayButton = models.CharField(max_length=64, verbose_name="Кнопка для проверки оплаты")
+    fundraisingMenu = models.TextField(verbose_name="Меню выбора книги фандрайзинг ({books})")
+    bookFundButton = models.CharField(max_length=128, verbose_name="Кнопка с книгой для сбора ({id})")
+    payTitle = models.TextField(verbose_name="Заголовок")
+    payDescription = models.TextField(verbose_name="Описание ({amount})")
 
     def __repr__(self):
         return self.name

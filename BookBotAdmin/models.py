@@ -242,8 +242,8 @@ class Languages(models.Model):
     payError = models.TextField(verbose_name="Ошибка оплаты")
     payOk = models.TextField(verbose_name="Успешная оплата")
     checkPayButton = models.CharField(max_length=64, verbose_name="Кнопка для проверки оплаты")
-    fundraisingMenu = models.TextField(verbose_name="Меню выбора книги фандрайзинг ({books})")
-    bookFundButton = models.CharField(max_length=128, verbose_name="Кнопка с книгой для сбора ({id})")
+    fundraisingMenu = models.TextField(verbose_name="Меню выбора книги фандрайзинг")
+    # bookFundButton = models.CharField(max_length=128, verbose_name="Кнопка с книгой для сбора ({id})")
     payTitle = models.TextField(verbose_name="Заголовок")
     payDescription = models.TextField(verbose_name="Описание ({amount})")
 

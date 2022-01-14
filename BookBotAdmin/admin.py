@@ -42,13 +42,17 @@ class SettingsAdmin(admin.ModelAdmin):
         return False
 
 
+class BooksAdmin(admin.ModelAdmin):
+    list_display = ["name", "goalSum", "collectedSum", "isDone"]
+
+
 admin.site.register(models.Users, UsersAdmin)
 admin.site.register(models.SubPrices, SubPricesAdmin)
 admin.site.register(models.Filters)
 admin.site.register(models.Mailing)
 admin.site.register(models.Promocodes, PromocodesAdmin)
 admin.site.register(models.Posts)
-admin.site.register(models.Books)
+admin.site.register(models.Books, BooksAdmin)
 admin.site.register(models.Languages, LanguagesAdmin)
 admin.site.register(models.Subscribes)
 admin.site.register(models.Questions)

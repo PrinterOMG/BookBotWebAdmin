@@ -71,6 +71,7 @@ class Subscribes(models.Model):
     endDate = models.DateField(verbose_name="Дата конца")
     isActive = models.BooleanField(default=True, verbose_name="Активна ли")
     subPriceId = models.ForeignKey("SubPrices", on_delete=models.CASCADE, verbose_name="Подписка")
+    user = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="Пользователь")
 
     def __repr__(self):
         return f"Подписка"
@@ -246,6 +247,8 @@ class Languages(models.Model):
     # bookFundButton = models.CharField(max_length=128, verbose_name="Кнопка с книгой для сбора ({id})")
     payTitle = models.TextField(verbose_name="Заголовок")
     payDescription = models.TextField(verbose_name="Описание ({amount})")
+    fundBookMenu = models.TextField(verbose_name="Меню с книгой фандрайзинга ({title}, {description}, {start}, {end}, {progress}, {price})")
+    progressFormat = models.TextField(verbose_name="Формат прогресса ({percent})")
 
     def __repr__(self):
         return self.name

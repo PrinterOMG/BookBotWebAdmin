@@ -252,6 +252,7 @@ class Languages(models.Model):
     progressFormat = models.TextField(verbose_name="Формат прогресса ({percent})")
     yoomoneyMenu = models.TextField(verbose_name="Меню юмани")
     subDescription = models.TextField(verbose_name="Описание подписки")
+    downloadButton = models.CharField(max_length=64, verbose_name="Кнопка скачать")
 
     def __repr__(self):
         return self.name

@@ -249,6 +249,8 @@ class Languages(models.Model):
     payDescription = models.TextField(verbose_name="Описание ({amount})")
     fundBookMenu = models.TextField(verbose_name="Меню с книгой фандрайзинга ({title}, {description}, {start}, {end}, {progress}, {price})")
     progressFormat = models.TextField(verbose_name="Формат прогресса ({percent})")
+    yoomoneyMenu = models.TextField(verbose_name="Меню юмани")
+    subDescription = models.TextField(verbose_name="Описание подписки")
 
     def __repr__(self):
         return self.name

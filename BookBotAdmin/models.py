@@ -258,6 +258,7 @@ class Languages(models.Model):
     showProgressButton = models.CharField(max_length=64, verbose_name="Кнопка отображения прогресса сбора")
     progressOn = models.TextField(verbose_name="Отображение прогресса включено")
     progressOff = models.TextField(verbose_name="Отображение прогресса выключено")
+    telegramPayLimit = models.TextField(verbose_name="Минимальный лимит пополнения через Телеграм 60 рублей")
 
     def __repr__(self):
         return self.name

@@ -5,10 +5,10 @@ from . import models
 
 
 class UsersAdmin(admin.ModelAdmin):
-    list_display = ("userId", "balance", "referral", "isBlock", "languageId", "showProgress")
+    list_display = ("userId", "username", "balance", "referral", "isBlock", "languageId", "showProgress")
     list_display_links = ["userId", "username"]
     search_fields = ["userId", "username"]
-    list_filter = ("balance", "referral", "isblock")
+    list_filter = ("balance", "referral", "isBlock")
     fields = ("userId", "username", "balance", "deposit", "subscribeTime", "referral", "isBlock", "languageId", "showProgress", "notEndPayment")
     readonly_fields = ("userId", "username", "referral", "isBlock", "languageId", "showProgress", "notEndPayment", "subscribeTime")
 

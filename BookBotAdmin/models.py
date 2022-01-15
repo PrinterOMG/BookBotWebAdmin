@@ -34,7 +34,7 @@ class Promocodes(models.Model):
     isUsed = models.BooleanField(default=False, verbose_name="Использован ли")
     whoUsed = models.ForeignKey("Users", on_delete=models.CASCADE, default=None, null=True, verbose_name="Кто использовал", blank=True)
     discount = models.IntegerField(verbose_name="Скидка")
-    subPriceId = models.ManyToManyField("SubPrices", null=True, verbose_name="На какие подписки")
+    subPriceId = models.ManyToManyField("SubPrices", verbose_name="На какие подписки")
     isActive = models.BooleanField(default=False, verbose_name="Активен ли")
 
     def __repr__(self):
@@ -156,7 +156,7 @@ class Books(models.Model):
     priceAfterDone = models.IntegerField(verbose_name="Цена после сбора")
     priceForSub = models.IntegerField(verbose_name="Цена для подписчика")
     priceCommon = models.IntegerField(verbose_name="Цена для всех")
-    userId = models.ManyToManyField("Users", verbose_name="Заплатившие пользователи", blank=True, null=True)
+    userId = models.ManyToManyField("Users", verbose_name="Заплатившие пользователи", blank=True)
 
     def __repr__(self):
         return f"Книга"

@@ -255,7 +255,7 @@ class Languages(models.Model):
     yoomoneyMenu = models.TextField(verbose_name="Меню юмани")
     subDescription = models.TextField(verbose_name="Описание подписки")
     downloadButton = models.CharField(max_length=64, verbose_name="Кнопка скачать")
-    showProgressButton = models.CharField(max_lenth=64, verbose_name="Кнопка отображения прогресса сбора")
+    showProgressButton = models.CharField(max_length=64, verbose_name="Кнопка отображения прогресса сбора")
     progressOn = models.TextField(verbose_name="Отображение прогресса включено")
     progressOff = models.TextField(verbose_name="Отображение прогресса выключено")
 

@@ -6,9 +6,17 @@ from . import models
 
 class UsersAdmin(admin.ModelAdmin):
     list_display = ("userId", "balance", "referral", "isBlock", "languageId", "showProgress")
-    list_display_links = ["userId"]
-    search_fields = ["userId"]
-    # list_filter = ("balance", "referral", "isblock")
+    list_display_links = ["userId", "username"]
+    search_fields = ["userId", "username"]
+    list_filter = ("balance", "referral", "isblock")
+    fields = ("userId", "username", "balance", "deposit", "subscribeTime", "referral", "isBlock", "languageId", "showProgress", "notEndPayment")
+    readonly_fields = ("userId", "username", "referral", "isBlock", "languageId", "showProgress", "notEndPayment", "subscribeTime")
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class LanguagesAdmin(admin.ModelAdmin):
@@ -25,7 +33,9 @@ class SubPricesAdmin(admin.ModelAdmin):
 
 
 class PromocodesAdmin(admin.ModelAdmin):
-    list_display = ["promocode"]
+    list_display = ["promocode", "isUsed", "isActive", "whoUsed", "discount"]
+    fields = ("promocode", "isUsed", "isActive", "whoUsed", "discount", "subPriceId")
+    readonly_fields = ("isUsed", "whoUsed", "isActive")
     formfield_overrides = {
         md.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
@@ -33,11 +43,19 @@ class PromocodesAdmin(admin.ModelAdmin):
 
 class SubscribesAdmin(admin.ModelAdmin):
     list_display = ["user", "endDate", "isActive"]
+    fields = ["user", "startDate", "endDate", "subPriceId", "isActive"]
+    readonly_fields = ["startDate", "endDate", "isActive", "user", "subPriceId"]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class SettingsAdmin(admin.ModelAdmin):
     list_display = ["name"]
-    fields = ["questionSymbolsLimit", "registerMenu"]
+    fields = ["questionSymbolsLimit", "registerMenu", "topUpLimit"]
 
     def has_add_permission(self, request):
         return False
@@ -48,6 +66,20 @@ class SettingsAdmin(admin.ModelAdmin):
 
 class BooksAdmin(admin.ModelAdmin):
     list_display = ["name", "goalSum", "collectedSum", "isDone"]
+    fields = ["name", "description", "startDate", "endDate", "goalSum", "collectedSum", "link", "isDone", "priceAfterDone", "priceForSub", "priceCommon", "userId"]
+    readonly_fields = ["collectedSum", "isDone", "userId"]
+
+
+class QuestionsAdmin(admin.ModelAdmin):
+    list_display = ["fromUser"]
+    fields = ["text", "answer", "isAnswered", "fromUser"]
+    readonly_fields = ["text", "isAnswered", "fromUser"]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(models.Users, UsersAdmin)

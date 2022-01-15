@@ -205,6 +205,7 @@ class Languages(models.Model):
     subscribesMenu = models.TextField(verbose_name="Меню покупки подписки ({subscribe})")
     subscribeFormat = models.TextField(verbose_name="Формат подписки в меню ({end_date})")
     buySubButton = models.CharField(max_length=64, verbose_name="Кнопка покупки подписки ({duration} - срок, {price} - цена)")
+    alreadySubError = models.TextField(verbose_name="Ошибка уже имения подписки")
     usePromocodeButton = models.CharField(max_length=64, verbose_name="Кнопка использования промокода")
     promoInput = models.TextField(verbose_name="Инструкция по введению промокода")
     cancelPromoButton = models.CharField(max_length=64, verbose_name="Кнопка для отмены активного промокода")

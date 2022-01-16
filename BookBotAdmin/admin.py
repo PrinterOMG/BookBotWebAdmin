@@ -23,6 +23,8 @@ class LanguagesAdmin(admin.ModelAdmin):
     list_display = ["name"]
     list_display_links = ["name"]
 
+    save_on_top = True
+
 
 class ReferralAdmin(admin.ModelAdmin):
     list_display = ["name", "code", "registerCount"]
@@ -74,6 +76,7 @@ class QuestionsAdmin(admin.ModelAdmin):
     list_display = ["questionId", "fromUser"]
     fields = ["text", "answer", "isAnswered", "fromUser"]
     readonly_fields = ["text", "isAnswered", "fromUser"]
+    list_filter = ["isAnswered", "fromUser"]
 
     def has_add_permission(self, request):
         return False

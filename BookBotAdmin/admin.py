@@ -71,7 +71,7 @@ class BooksAdmin(admin.ModelAdmin):
 
 
 class QuestionsAdmin(admin.ModelAdmin):
-    list_display = ["fromUser"]
+    list_display = ["questionId", "fromUser"]
     fields = ["text", "answer", "isAnswered", "fromUser"]
     readonly_fields = ["text", "isAnswered", "fromUser"]
 

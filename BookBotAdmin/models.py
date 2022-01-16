@@ -150,7 +150,7 @@ class Books(models.Model):
     startDate = models.DateField(verbose_name="Дата начала")
     endDate = models.DateField(verbose_name="Дата конца")
     goalSum = models.IntegerField(verbose_name="Необходимая сумма")
-    collectedSum = models.IntegerField(verbose_name="Собранная сумма")
+    collectedSum = models.IntegerField(default=0, verbose_name="Собранная сумма")
     link = models.CharField(max_length=64, verbose_name="Ссылка")
     isDone = models.BooleanField(default=False, verbose_name="Собрано ли")
     priceAfterDone = models.IntegerField(verbose_name="Цена после сбора")
@@ -260,6 +260,7 @@ class Languages(models.Model):
     progressOff = models.TextField(verbose_name="Отображение прогресса выключено")
     telegramPayLimit = models.TextField(verbose_name="Минимальный лимит пополнения через Телеграм 60 рублей")
     bookDoneNotify = models.TextField(verbose_name="Уведолмение пользователя о окончании сбора ({title})")
+    closeButton = models.CharField(max_length=64, verbose_name="Кнопка закрыть")
 
     def __repr__(self):
         return self.name

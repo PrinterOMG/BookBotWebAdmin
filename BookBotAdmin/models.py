@@ -95,10 +95,10 @@ class Filters(models.Model):
     isSubscribed = models.BooleanField(default=False, verbose_name="Подписан ли")
 
     def __repr__(self):
-        return f"Фильтр"
+        return self.name
 
     def __str__(self):
-        return f""
+        return self.name
 
     class Meta:
         verbose_name = "Фильтр"
@@ -128,8 +128,8 @@ class Posts(models.Model):
     postId = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=64, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
-    photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка")
-    date = models.DateTimeField(verbose_name="Дата")
+    photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка", blank=True, null=True)
+    date = models.DateTimeField(verbose_name="Дата", auto_now=True)
     filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр")
     isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 

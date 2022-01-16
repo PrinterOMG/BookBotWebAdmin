@@ -259,6 +259,7 @@ class Languages(models.Model):
     progressOn = models.TextField(verbose_name="Отображение прогресса включено")
     progressOff = models.TextField(verbose_name="Отображение прогресса выключено")
     telegramPayLimit = models.TextField(verbose_name="Минимальный лимит пополнения через Телеграм 60 рублей")
+    bookDoneNotify = models.TextField(verbose_name="Уведолмение пользователя о окончании сбора ({title})")
 
     def __repr__(self):
         return self.name

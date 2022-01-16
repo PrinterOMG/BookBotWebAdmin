@@ -94,6 +94,14 @@ class QuestionsAdmin(admin.ModelAdmin):
         return False
 
 
-admin.site.register(models.Filters)
-admin.site.register(models.Mailing)
-admin.site.register(models.Posts)
+@admin.register(models.Filters)
+class FiltersAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+
+
+@admin.register(models.Posts)
+class PostsAdmin(admin.ModelAdmin):
+    list_display = ["title", "isSend"]
+
+
+# admin.site.register(models.Mailing)

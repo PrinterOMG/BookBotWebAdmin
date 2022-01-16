@@ -131,6 +131,7 @@ class Posts(models.Model):
     photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка")
     date = models.DateTimeField(verbose_name="Дата")
     filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр")
+    isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 
     def __repr__(self):
         return f"Пост"

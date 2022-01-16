@@ -82,7 +82,7 @@ class BooksAdmin(admin.ModelAdmin):
 
 @admin.register(models.Questions)
 class QuestionsAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "fromUser"]
+    list_display = ["__str__", "fromUser", "isAnswered"]
     fields = ["text", "answer", "isAnswered", "fromUser"]
     readonly_fields = ["text", "isAnswered", "fromUser"]
     list_filter = ["isAnswered", "fromUser"]

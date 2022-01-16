@@ -4,6 +4,7 @@ from django.db import models as md
 from . import models
 
 
+@admin.register(models.Users)
 class UsersAdmin(admin.ModelAdmin):
     list_display = ("userId", "username", "balance", "referral", "isBlock", "languageId", "showProgress")
     list_display_links = ["userId", "username"]
@@ -19,6 +20,7 @@ class UsersAdmin(admin.ModelAdmin):
         return False
 
 
+@admin.register(models.Languages)
 class LanguagesAdmin(admin.ModelAdmin):
     list_display = ["name"]
     list_display_links = ["name"]
@@ -26,14 +28,17 @@ class LanguagesAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
+@admin.register(models.Referrals)
 class ReferralAdmin(admin.ModelAdmin):
     list_display = ["name", "code", "registerCount"]
 
 
+@admin.register(models.SubPrices)
 class SubPricesAdmin(admin.ModelAdmin):
     list_display = ["name", "value", "duration"]
 
 
+@admin.register(models.Promocodes)
 class PromocodesAdmin(admin.ModelAdmin):
     list_display = ["promocode", "isUsed", "isActive", "whoUsed", "discount"]
     fields = ("promocode", "isUsed", "isActive", "whoUsed", "discount", "subPriceId")
@@ -43,6 +48,7 @@ class PromocodesAdmin(admin.ModelAdmin):
     }
 
 
+@admin.register(models.Subscribes)
 class SubscribesAdmin(admin.ModelAdmin):
     list_display = ["user", "endDate", "isActive"]
     fields = ["user", "startDate", "endDate", "subPriceId", "isActive"]
@@ -55,6 +61,7 @@ class SubscribesAdmin(admin.ModelAdmin):
         return False
 
 
+@admin.register(models.Settings)
 class SettingsAdmin(admin.ModelAdmin):
     list_display = ["name"]
     fields = ["questionSymbolsLimit", "registerMenu", "topUpLimit"]
@@ -66,14 +73,16 @@ class SettingsAdmin(admin.ModelAdmin):
         return False
 
 
+@admin.register(models.Books)
 class BooksAdmin(admin.ModelAdmin):
     list_display = ["name", "goalSum", "collectedSum", "isDone"]
     fields = ["name", "description", "startDate", "endDate", "goalSum", "collectedSum", "link", "isDone", "priceAfterDone", "priceForSub", "priceCommon", "userId"]
     readonly_fields = ["collectedSum", "isDone", "userId"]
 
 
+@admin.register(models.Questions)
 class QuestionsAdmin(admin.ModelAdmin):
-    list_display = ["questionId", "fromUser"]
+    list_display = ["__str__", "fromUser"]
     fields = ["text", "answer", "isAnswered", "fromUser"]
     readonly_fields = ["text", "isAnswered", "fromUser"]
     list_filter = ["isAnswered", "fromUser"]
@@ -85,15 +94,6 @@ class QuestionsAdmin(admin.ModelAdmin):
         return False
 
 
-admin.site.register(models.Users, UsersAdmin)
-admin.site.register(models.SubPrices, SubPricesAdmin)
 admin.site.register(models.Filters)
 admin.site.register(models.Mailing)
-admin.site.register(models.Promocodes, PromocodesAdmin)
 admin.site.register(models.Posts)
-admin.site.register(models.Books, BooksAdmin)
-admin.site.register(models.Languages, LanguagesAdmin)
-admin.site.register(models.Subscribes, SubscribesAdmin)
-admin.site.register(models.Questions, QuestionsAdmin)
-admin.site.register(models.Referrals, ReferralAdmin)
-admin.site.register(models.Settings, SettingsAdmin)

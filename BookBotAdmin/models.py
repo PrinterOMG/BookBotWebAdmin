@@ -54,6 +54,7 @@ class Questions(models.Model):
     answer = models.TextField(default=None, null=True, verbose_name="Ответ")
     isAnswered = models.BooleanField(default=False, verbose_name="Отвечен ли")
     fromUser = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="От пользователя")
+    date = models.DateTimeField(verbose_name="Дата вопроса", auto_created=True)
 
     def __repr__(self):
         return f"Вопрос №{self.pk}"
@@ -89,9 +90,12 @@ class Filters(models.Model):
     filterId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название")
     languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык")
-    subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
-    deposit = models.IntegerField(default=0, verbose_name="Депозит")
-    balance = models.IntegerField(default=0, verbose_name="Баланс")
+    subscribeTimeFrom = models.IntegerField(default=0, verbose_name="Месяцы подписки (Начало)")
+    subscribeTimeTo = models.IntegerField(default=0, verbose_name="Месяцы подписки (Конец)")
+    depositFrom = models.IntegerField(default=0, verbose_name="Депозит (Начало)")
+    depositTo = models.IntegerField(default=0, verbose_name="Депозит (Конец)")
+    balanceFrom = models.IntegerField(default=0, verbose_name="Баланс (Начало)")
+    balanceTo = models.IntegerField(default=0, verbose_name="Баланс (Конец)")
     isSubscribed = models.BooleanField(default=False, verbose_name="Подписан ли")
 
     def __repr__(self):

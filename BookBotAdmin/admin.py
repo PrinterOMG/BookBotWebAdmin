@@ -75,14 +75,14 @@ class SettingsAdmin(admin.ModelAdmin):
 
 @admin.register(models.Books)
 class BooksAdmin(admin.ModelAdmin):
-    list_display = ["name", "goalSum", "collectedSum", "isDone"]
+    list_display = ["name", "startDate", "endDate", "goalSum", "collectedSum", "isDone"]
     fields = ["name", "description", "startDate", "endDate", "goalSum", "collectedSum", "link", "isDone", "priceAfterDone", "priceForSub", "priceCommon", "userId"]
     readonly_fields = ["collectedSum", "isDone", "userId"]
 
 
 @admin.register(models.Questions)
 class QuestionsAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "fromUser", "isAnswered"]
+    list_display = ["text", "fromUser", "isAnswered", "date"]
     fields = ["text", "answer", "isAnswered", "fromUser"]
     readonly_fields = ["text", "isAnswered", "fromUser"]
     list_filter = ["isAnswered", "fromUser"]
@@ -101,7 +101,7 @@ class FiltersAdmin(admin.ModelAdmin):
 
 @admin.register(models.Posts)
 class PostsAdmin(admin.ModelAdmin):
-    list_display = ["title", "isSend"]
+    list_display = ["title", "isSend", "date"]
     fields = ["title", "text", "photo", "date", "filter", "isSend"]
     readonly_fields = ["date", "isSend"]
 

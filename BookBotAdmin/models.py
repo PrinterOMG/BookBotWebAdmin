@@ -13,6 +13,7 @@ class Users(models.Model):
     subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
     notEndPayment = models.BooleanField(verbose_name="Не закончил оплату")
     paymentId = models.CharField(max_length=128, verbose_name="Сохраненный способ оплаты", blank=True, null=True)
+    isAutoPay = models.ВooleanField(default=True, verbose_name="Автоплатеж")
 
     def __repr__(self):
         return self.username
@@ -266,6 +267,9 @@ class Languages(models.Model):
     telegramPayLimit = models.TextField(verbose_name="Минимальный лимит пополнения через Телеграм 60 рублей")
     bookDoneNotify = models.TextField(verbose_name="Уведолмение пользователя о окончании сбора ({title})")
     closeButton = models.CharField(max_length=64, verbose_name="Кнопка закрыть")
+    autoPayButton = models.CharField(max_length=64, verbose_name="Кнопка смены автоплатежа")
+    autoPayOff = models.CharField(max_length=64, verbose_name="Выключение автоплатежа")
+    autoPayOn = models.CharField(max_lenght=64, verbose_name="Включение автоплатежа")
 
     def __repr__(self):
         return self.name

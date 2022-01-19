@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Users
+from .models import Users, Subscribes
+from django.http import FileResponse
 
-# Create your views here.
-from django.urls import reverse
+import pandas as pd
 
 
 def index(request):
@@ -10,7 +10,25 @@ def index(request):
 
 
 def get_user(request, user_id):
-    user = Users.objects.get(userId=user_id)
+    user = Users.objects.get(pk=user_id)
     print(user)
 
-    return redirect(f"/admin/BookBotAdmin/users/{user_id}/change/")
+    data = {
+        "Telegram ID": [user.pk],
+        "Username": [user.username],
+        "Balance": [user.balance],
+        "Deposit": [user.deposit],
+        "Referral": [user.referral],
+        "Language": [user.languageId],
+        "Subscribe time": [user.subscribeTime],
+        "Not end payment": [user.notEndPayment],
+        "Auto payment": [user.isAutoPay]
+    }
+
+    filename = f"static/users/{user_id}.xlsx"
+    df = pd.DataFrame(data)
+    df.to_excel(filename, sheet_name="User")
+
+    with open(filename, "rb") as file:
+        return FileResponse(file)
+    # return redirect(f"/admin/BookBotAdmin/users/{user_id}/change/")

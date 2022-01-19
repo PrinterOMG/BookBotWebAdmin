@@ -3,7 +3,7 @@ from django.urls import path, include
 from BookBotWebAdmin import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name="admin"),
     path('', include('BookBotAdmin.urls'))
 ]
 

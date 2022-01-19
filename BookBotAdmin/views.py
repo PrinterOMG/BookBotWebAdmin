@@ -5,4 +5,4 @@ from django.urls import reverse
 
 
 def index(request):
-    reverse("/admin")
+    reverse("admin")

@@ -29,6 +29,5 @@ def get_user(request, user_id):
     df = pd.DataFrame(data)
     df.to_excel(filename, sheet_name="User")
 
-    with open(filename, "rb") as file:
-        return FileResponse(file)
+    return FileResponse(open(filename, "rb"))
     # return redirect(f"/admin/BookBotAdmin/users/{user_id}/change/")

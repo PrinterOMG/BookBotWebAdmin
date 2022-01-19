@@ -31,6 +31,8 @@ class LanguagesAdmin(admin.ModelAdmin):
 @admin.register(models.Referrals)
 class ReferralAdmin(admin.ModelAdmin):
     list_display = ["name", "code", "registerCount"]
+    fields = ["name", "code", "registerCount"]
+    readonly_fields = ["registerCount"]
 
 
 @admin.register(models.SubPrices)

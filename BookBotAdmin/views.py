@@ -11,7 +11,6 @@ def index(request):
 
 def get_user(request, user_id):
     user = Users.objects.get(pk=user_id)
-    print(user)
 
     data = {
         "Telegram ID": [user.pk],
@@ -27,7 +26,7 @@ def get_user(request, user_id):
 
     filename = f"static/users/{user_id}.xlsx"
     df = pd.DataFrame(data)
-    df.to_excel(filename, sheet_name="User")
+    df.to_excel(filename, sheet_name="User", index=False)
 
     return FileResponse(open(filename, "rb"))
     # return redirect(f"/admin/BookBotAdmin/users/{user_id}/change/")

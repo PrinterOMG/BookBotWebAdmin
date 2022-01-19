@@ -110,25 +110,6 @@ class Filters(models.Model):
         verbose_name_plural = "Фильтры"
 
 
-class Mailing(models.Model):
-    mailingId = models.BigAutoField(primary_key=True)
-    title = models.CharField(max_length=64, verbose_name="Заголовок")
-    text = models.TextField(verbose_name="Текст")
-    photo = models.ImageField(upload_to="imgs/mailing/", verbose_name="Картинка")
-    date = models.DateTimeField(verbose_name="Дата")
-    filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр")
-
-    def __repr__(self):
-        return f"Рассылка"
-
-    def __str__(self):
-        return f""
-
-    class Meta:
-        verbose_name = "Рассылка"
-        verbose_name_plural = "Рассылки"
-
-
 class Posts(models.Model):
     postId = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=64, verbose_name="Заголовок")
@@ -209,7 +190,9 @@ class Languages(models.Model):
     balanceButton = models.CharField(max_length=64, verbose_name="Кнопка 'Баланс'")
     changeLanguageOk = models.CharField(max_length=128, verbose_name="Уведомление об успешной смене языка")
     subscribesMenu = models.TextField(verbose_name="Меню покупки подписки ({subscribe})")
-    subscribeFormat = models.TextField(verbose_name="Формат подписки в меню ({end_date})")
+    activeSub = models.TextField(verbose_name="Формат подписки в меню ({end_date})")
+    noSub = models.TextField(verbose_name="Отсутствие подписки")
+    expiredSub = models.TextField(verbose_name="Подписка закончилась ({end_date})")
     buySubButton = models.CharField(max_length=64, verbose_name="Кнопка покупки подписки ({duration} - срок, {price} - цена)")
     alreadySubError = models.TextField(verbose_name="Ошибка уже имения подписки")
     usePromocodeButton = models.CharField(max_length=64, verbose_name="Кнопка использования промокода")
@@ -253,7 +236,6 @@ class Languages(models.Model):
     payOk = models.TextField(verbose_name="Успешная оплата")
     checkPayButton = models.CharField(max_length=64, verbose_name="Кнопка для проверки оплаты")
     fundraisingMenu = models.TextField(verbose_name="Меню выбора книги фандрайзинг")
-    # bookFundButton = models.CharField(max_length=128, verbose_name="Кнопка с книгой для сбора ({id})")
     payTitle = models.TextField(verbose_name="Заголовок")
     payDescription = models.TextField(verbose_name="Описание ({amount})")
     fundBookMenu = models.TextField(verbose_name="Меню с книгой фандрайзинга ({title}, {description}, {start}, {end}, {progress}, {price})")

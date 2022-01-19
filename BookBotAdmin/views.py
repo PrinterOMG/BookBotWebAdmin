@@ -10,7 +10,7 @@ def index(request):
 
 
 def get_user(request, user_id):
-    user = Users.objects.get(pk=user_id)
+    user = Users.objects.get(userId=user_id)
     print(user)
 
     return redirect(f"/admin/BookBotAdmin/users/{user_id}/change/")

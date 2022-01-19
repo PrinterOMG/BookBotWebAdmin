@@ -269,7 +269,7 @@ class Languages(models.Model):
     closeButton = models.CharField(max_length=64, verbose_name="Кнопка закрыть")
     autoPayButton = models.CharField(max_length=64, verbose_name="Кнопка смены автоплатежа")
     autoPayOff = models.CharField(max_length=64, verbose_name="Выключение автоплатежа")
-    autoPayOn = models.CharField(max_lenght=64, verbose_name="Включение автоплатежа")
+    autoPayOn = models.CharField(max_length=64, verbose_name="Включение автоплатежа")
 
     def __repr__(self):
         return self.name

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from models import Users
+from .models import Users
 
 # Create your views here.
 from django.urls import reverse

@@ -55,7 +55,7 @@ class Questions(models.Model):
     answer = models.TextField(default=None, null=True, verbose_name="Ответ")
     isAnswered = models.BooleanField(default=False, verbose_name="Отвечен ли")
     fromUser = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="От пользователя")
-    date = models.DateTimeField(verbose_name="Дата вопроса", auto_created=True)
+    date = models.DateTimeField(verbose_name="Дата вопроса", auto_created=True, auto_now=True)
 
     def __repr__(self):
         return f"Вопрос №{self.pk}"

@@ -13,7 +13,7 @@ class Users(models.Model):
     subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
     notEndPayment = models.BooleanField(verbose_name="Не закончил оплату")
     paymentId = models.CharField(max_length=128, verbose_name="Сохраненный способ оплаты", blank=True, null=True)
-    isAutoPay = models.ВooleanField(default=True, verbose_name="Автоплатеж")
+    isAutoPay = models.BooleanField(default=True, verbose_name="Автоплатеж")
 
     def __repr__(self):
         return self.username

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from models import Users
 
 # Create your views here.
 from django.urls import reverse
@@ -9,6 +10,7 @@ def index(request):
 
 
 def get_user(request, user_id):
-    print(request)
+    user = Users.objects.get(pk=user_id)
+    print(user)
 
-    return redirect("/admin")
+    return redirect(f"/admin/BookBotAdmin/users/{user_id}/change/")

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Users(models.Model):
@@ -22,7 +23,7 @@ class Users(models.Model):
         return self.username
 
     def get_absolute_url(self):
-        return "Тута скачивание данных о пользователе"
+        return reverse("get_user", args=("user_id", ))
 
     class Meta:
         verbose_name = "Пользователь"

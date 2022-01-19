@@ -203,7 +203,7 @@ class Languages(models.Model):
     promoAlreadyUsed = models.TextField(verbose_name="Промокод уже использован")
     promoOk = models.TextField(verbose_name="Уведомление об успешной активации промокода ({code}, {discount})")
     info = models.TextField(verbose_name="Информация")
-    balanceMenu = models.TextField(verbose_name="Меню баланса ({balance})")
+    balanceMenu = models.TextField(verbose_name="Меню баланса ({balance}, {subscribe})")
     topUpButton = models.CharField(max_length=64, verbose_name="Кнопка для пополнения баланса")
     topUpInput = models.TextField(verbose_name="Инструкция по введению суммы пополнения")
     topUpError = models.TextField(verbose_name="Указана неверная сумма для пополнения")

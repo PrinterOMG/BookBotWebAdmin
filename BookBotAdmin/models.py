@@ -23,7 +23,7 @@ class Users(models.Model):
         return self.username
 
     def get_absolute_url(self):
-        return reverse("get_user", args=("user_id", ))
+        return reverse(f"get_user/{self.pk}")
 
     class Meta:
         verbose_name = "Пользователь"

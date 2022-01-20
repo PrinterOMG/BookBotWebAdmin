@@ -111,7 +111,7 @@ class PostsAdmin(admin.ModelAdmin):
 @admin.register(models.Statistic)
 class Statistic(admin.ModelAdmin):
     list_display = ["name"]
-    fields = ["name", "statisticId", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
+    fields = ["name", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
 
     # def has_add_permission(self, request):
     #     return False

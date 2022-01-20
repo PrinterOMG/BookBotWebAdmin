@@ -320,3 +320,13 @@ class Statistic(models.Model):
     archiveBooksSum = models.IntegerField(default=0, verbose_name="Сумма покупок книг из архива")
     archiveBooksCount = models.IntegerField(default=0, verbose_name="Количество купленных книг из архива")
 
+    def __repr__(self):
+        return "Статистика"
+
+    def __str__(self):
+        return "Статистика"
+
+    class Meta:
+        verbose_name = "Статистика"
+        verbose_name_plural = "Статистика"
+

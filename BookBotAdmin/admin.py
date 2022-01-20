@@ -1,7 +1,11 @@
 from django.contrib import admin
 from django.forms import CheckboxSelectMultiple
 from django.db import models as md
+from django.utils.html import format_html
+
 from . import models
+from django.urls import reverse
+from django.utils.http import urlencode
 
 
 @admin.register(models.Users)
@@ -110,9 +114,15 @@ class PostsAdmin(admin.ModelAdmin):
 
 @admin.register(models.Statistic)
 class Statistic(admin.ModelAdmin):
-    list_display = ["name"]
+    list_display = ["name", "subs"]
     fields = ["name", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
     readonly_fields = ["allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
+
+    def subs(self):
+        url = (
+                reverse("admin:BookBotAdmin_Subscribes_changelist")
+        )
+        return format_html('<a href="{}">Subscribes</a>', url)
 
     # def has_add_permission(self, request):
     #     return False

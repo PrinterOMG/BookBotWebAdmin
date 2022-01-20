@@ -113,8 +113,6 @@ class Statistic(admin.ModelAdmin):
     list_display = ["name"]
     fields = ["name", "statisticId", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
 
-    readonly_fields = ["statisticId", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
-
     # def has_add_permission(self, request):
     #     return False
     #

@@ -113,7 +113,7 @@ def get_stats(request):
         buy_users_count = book.userId.all().count()
         fundraising_data["Buy users count"].append(buy_users_count)
 
-        progress = "100%" if book["collectedSum"] > book["goalSum"] else f"{round((book['collectedSum'] / book['goalSum']) * 100)}%"
+        progress = "100%" if book.collectedSum > book.goalSum else f"{round((book.collectedSum / book.goalSum) * 100)}%"
         fundraising_data["Progress"].append(progress)
 
     file_path = r"static/stats.xlsx"

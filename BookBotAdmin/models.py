@@ -313,9 +313,9 @@ class Operations(models.Model):
 class Statistic(models.Model):
     statisticsId = models.BigAutoField(primary_key=True)
     allSubsCounter = models.IntegerField(default=0, verbose_name="Общее количество купивших подписку")
-    NoBuyUsersCounter = models.IntegerField(default=0, verbose_name="Количество пользователей не купивших подписку")
-    BlockUsersCounter = models.IntegerField(default=0, verbose_name="Количество пользователей заблокировавших бота")
-    InterruptedPaymentsCount = models.IntegerField(default=0, verbose_name="Количество прерванных оплат оплату")
+    noBuyUsersCounter = models.IntegerField(default=0, verbose_name="Количество пользователей не купивших подписку")
+    blockUsersCounter = models.IntegerField(default=0, verbose_name="Количество пользователей заблокировавших бота")
+    interruptedPaymentsCount = models.IntegerField(default=0, verbose_name="Количество прерванных оплат оплату")
     archiveBooksSum = models.IntegerField(default=0, verbose_name="Сумма покупок книг из архива")
     archiveBooksCount = models.IntegerField(default=0, verbose_name="Количество купленных книг из архива")
 

@@ -108,4 +108,8 @@ class PostsAdmin(admin.ModelAdmin):
     readonly_fields = ["date", "isSend"]
 
 
+@admin.register(models.Statistic)
+class Statistic(admin.ModelAdmin):
+    list_display = ["statisticsId"]
+
 # admin.site.register(models.Mailing)

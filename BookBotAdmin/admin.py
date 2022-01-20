@@ -118,7 +118,7 @@ class Statistic(admin.ModelAdmin):
     fields = ["name", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
     readonly_fields = ["allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
 
-    def subs(self):
+    def subs(self, obj):
         url = (
                 reverse("admin:BookBotAdmin_Subscribes_changelist")
         )

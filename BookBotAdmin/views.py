@@ -110,7 +110,7 @@ def get_stats(request):
         fundraising_data["Name"].append(book.name)
         fundraising_data["Collected sum"].append(book.collectedSum)
 
-        buy_users_count = book.userId.all().filter(books_id=book.pk)
+        buy_users_count = book.userId.all().count()
         fundraising_data["Buy users count"].append(buy_users_count)
 
         progress = "100%" if book["collectedSum"] > book["goalSum"] else f"{round((book['collectedSum'] / book['goalSum']) * 100)}%"

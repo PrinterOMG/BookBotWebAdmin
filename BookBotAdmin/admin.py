@@ -114,15 +114,33 @@ class PostsAdmin(admin.ModelAdmin):
 
 @admin.register(models.Statistic)
 class Statistic(admin.ModelAdmin):
-    list_display = ["name", "subs"]
+    list_display = ["name", "subs_link", "ref_link", "fund_books"]
     fields = ["name", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
     readonly_fields = ["allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
 
-    def subs(self, obj):
+    def subs_link(self, obj):
         url = (
                 reverse("admin:BookBotAdmin_subscribes_changelist")
         )
-        return format_html('<a href="{}">Subscribes</a>', url)
+        return format_html('<a href="{}">Подписки</a>', url)
+
+    subs_link.short_description = "Подписки"
+
+    def ref_link(self, obj):
+        url = (
+            reverse("admin:BookBotAdmin_referrals_changelist")
+        )
+        return format_html('<a href="{}">Реферальные коды</a>', url)
+
+    ref_link.short_description = "Реферальные коды"
+
+    def fund_books(self, obj):
+        url = (
+            reverse("admin:BookBotAdmin_books_changelist")
+        )
+        return format_html('<a href="{}">Книги</a>', url)
+
+    fund_books.short_description = "Книги"
 
     # def has_add_permission(self, request):
     #     return False

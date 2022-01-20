@@ -312,7 +312,7 @@ class Operations(models.Model):
 
 class Statistic(models.Model):
     statisticsId = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=128, verbose_name="Статистика")
+    name = models.CharField(max_length=128, verbose_name="Имя")
     allSubsCounter = models.IntegerField(default=0, verbose_name="Общее количество купивших подписку")
     noBuyUsersCounter = models.IntegerField(default=0, verbose_name="Количество пользователей не купивших подписку")
     blockUsersCounter = models.IntegerField(default=0, verbose_name="Количество пользователей заблокировавших бота")

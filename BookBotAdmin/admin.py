@@ -112,6 +112,7 @@ class PostsAdmin(admin.ModelAdmin):
 class Statistic(admin.ModelAdmin):
     list_display = ["name"]
     fields = ["name", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
+    readonly_fields = ["allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
 
     # def has_add_permission(self, request):
     #     return False

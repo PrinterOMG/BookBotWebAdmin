@@ -120,7 +120,7 @@ class Statistic(admin.ModelAdmin):
 
     def subs(self, obj):
         url = (
-                reverse("admin:BookBotAdmin_Subscribes_changelist")
+                reverse("admin:bookbotadmin_subscribes_changelist")
         )
         return format_html('<a href="{}">Subscribes</a>', url)
 

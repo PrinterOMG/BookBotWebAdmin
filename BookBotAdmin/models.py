@@ -121,10 +121,10 @@ class Posts(models.Model):
     isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 
     def __repr__(self):
-        return f"Пост"
+        return self.title
 
     def __str__(self):
-        return f""
+        return self.title
 
     class Meta:
         verbose_name = "Пост"
@@ -325,6 +325,9 @@ class Statistic(models.Model):
 
     def __str__(self):
         return "Статистика"
+
+    def get_absolute_url(self):
+        return reverse("get_stats")
 
     class Meta:
         verbose_name = "Статистика"

@@ -5,6 +5,7 @@ from django.urls import reverse
 class Users(models.Model):
     userId = models.IntegerField(primary_key=True, verbose_name="ID пользователя в Telegram")
     username = models.CharField(max_length=128, verbose_name="Имя пользователя")
+    mention = models.CharField(max_length=128, verbose_name="Обращение")
     balance = models.IntegerField(default=0, verbose_name="Баланс")
     referral = models.ForeignKey("Referrals", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал", blank=True)
     isBlock = models.BooleanField(default=False, verbose_name="Заблокировал ли бота")
@@ -92,14 +93,14 @@ class Subscribes(models.Model):
 class Filters(models.Model):
     filterId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название")
-    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык")
+    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True)
     subscribeTimeFrom = models.IntegerField(default=0, verbose_name="Месяцы подписки (От)")
     subscribeTimeTo = models.IntegerField(default=0, verbose_name="Месяцы подписки (До)")
     depositFrom = models.IntegerField(default=0, verbose_name="Депозит (От)")
     depositTo = models.IntegerField(default=0, verbose_name="Депозит (До)")
     balanceFrom = models.IntegerField(default=0, verbose_name="Баланс (От)")
     balanceTo = models.IntegerField(default=0, verbose_name="Баланс (До)")
-    isSubscribed = models.BooleanField(default=False, verbose_name="Подписан ли")
+    subscribeStatus = models.ForeignKey()
     notEndPayment = models.BooleanField(default=False, verbose_name="Не завершил оплату")
 
     def __repr__(self):
@@ -113,13 +114,24 @@ class Filters(models.Model):
         verbose_name_plural = "Фильтры"
 
 
+class SubscribeStatus(models.Model):
+    name = models.CharField(max_length=128)
+    value = models.CharField(max_length=128)
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+
 class Posts(models.Model):
     postId = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=64, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
     photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка", blank=True, null=True)
     date = models.DateTimeField(verbose_name="Дата", auto_now=True)
-    filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр")
+    filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр", blank=True)
     isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 
     def __repr__(self):

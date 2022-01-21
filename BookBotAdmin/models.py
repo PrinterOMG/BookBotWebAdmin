@@ -17,6 +17,7 @@ class Users(models.Model):
     paymentId = models.CharField(max_length=128, verbose_name="Сохраненный способ оплаты", blank=True, null=True)
     isAutoPay = models.BooleanField(default=True, verbose_name="Автоплатеж")
     lastMenu = models.IntegerField(default=0)
+    subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, default=1)
 
     def __repr__(self):
         return self.username

@@ -15,6 +15,7 @@ class Users(models.Model):
     notEndPayment = models.BooleanField(verbose_name="Не закончил оплату")
     paymentId = models.CharField(max_length=128, verbose_name="Сохраненный способ оплаты", blank=True, null=True)
     isAutoPay = models.BooleanField(default=True, verbose_name="Автоплатеж")
+    lastMenu = models.IntegerField(default=0)
 
     def __repr__(self):
         return self.username
@@ -92,13 +93,14 @@ class Filters(models.Model):
     filterId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название")
     languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык")
-    subscribeTimeFrom = models.IntegerField(default=0, verbose_name="Месяцы подписки (Начало)")
-    subscribeTimeTo = models.IntegerField(default=0, verbose_name="Месяцы подписки (Конец)")
-    depositFrom = models.IntegerField(default=0, verbose_name="Депозит (Начало)")
-    depositTo = models.IntegerField(default=0, verbose_name="Депозит (Конец)")
-    balanceFrom = models.IntegerField(default=0, verbose_name="Баланс (Начало)")
-    balanceTo = models.IntegerField(default=0, verbose_name="Баланс (Конец)")
+    subscribeTimeFrom = models.IntegerField(default=0, verbose_name="Месяцы подписки (От)")
+    subscribeTimeTo = models.IntegerField(default=0, verbose_name="Месяцы подписки (До)")
+    depositFrom = models.IntegerField(default=0, verbose_name="Депозит (От)")
+    depositTo = models.IntegerField(default=0, verbose_name="Депозит (До)")
+    balanceFrom = models.IntegerField(default=0, verbose_name="Баланс (От)")
+    balanceTo = models.IntegerField(default=0, verbose_name="Баланс (До)")
     isSubscribed = models.BooleanField(default=False, verbose_name="Подписан ли")
+    notEndPayment = models.BooleanField(default=False, verbose_name="Не завершил оплату")
 
     def __repr__(self):
         return self.name

@@ -100,7 +100,7 @@ class Filters(models.Model):
     depositTo = models.IntegerField(default=0, verbose_name="Депозит (До)")
     balanceFrom = models.IntegerField(default=0, verbose_name="Баланс (От)")
     balanceTo = models.IntegerField(default=0, verbose_name="Баланс (До)")
-    subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, verbose_name="Статус подписки", blank=True)
+    subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, verbose_name="Статус подписки", blank=True, null=True, default=None)
     notEndPayment = models.BooleanField(default=False, verbose_name="Не завершил оплату")
 
     def __repr__(self):

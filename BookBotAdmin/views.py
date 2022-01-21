@@ -44,7 +44,9 @@ def get_stats(request):
         "Not end payment": [],
         "Auto payment": [],
         "Is subscriber": [],
-        "Subscribe end": []
+        "Subscribe end": [],
+        "Subscribe duration": [],
+        "Subscribe price": []
     }
     for user in Users.objects.all():
         users_data["Telegram ID"].append(user.pk)
@@ -61,10 +63,15 @@ def get_stats(request):
             subscribe = Subscribes.objects.get(user_id=user.pk)
             users_data["Is subscriber"].append(subscribe.isActive)
             users_data["Subscribe end"].append(subscribe.endDate)
-            print("Ok")
+
+            subprice = SubPrices.objects.get(subPriceId=subscribe.subPriceId_id)
+            users_data["Subscribe duration"].append(subprice.duration)
+            users_data["Subscribe price"].append(subprice.value)
         except:
             users_data["Is subscriber"].append(False)
             users_data["Subscribe end"].append("0")
+            users_data["Subscribe duration"].append("0")
+            users_data["Subscribe price"].append("0")
 
     referrals_data = {
         "Name": [],

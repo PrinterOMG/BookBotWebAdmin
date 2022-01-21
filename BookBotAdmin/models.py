@@ -141,7 +141,7 @@ class Books(models.Model):
     endDate = models.DateField(verbose_name="Дата конца")
     goalSum = models.IntegerField(verbose_name="Необходимая сумма")
     collectedSum = models.IntegerField(default=0, verbose_name="Собранная сумма")
-    link = models.CharField(max_length=64, verbose_name="Ссылка")
+    link = models.CharField(max_length=256, verbose_name="Ссылка")
     isDone = models.BooleanField(default=False, verbose_name="Собрано ли")
     priceAfterDone = models.IntegerField(verbose_name="Цена после сбора")
     priceForSub = models.IntegerField(verbose_name="Цена для подписчика")

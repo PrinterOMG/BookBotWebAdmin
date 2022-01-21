@@ -147,8 +147,3 @@ class Statistic(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
-
-
-@admin.register(models.SubscribeStatus)
-class SubscribeStatusAdmin(admin.ModelAdmin):
-    pass

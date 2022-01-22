@@ -268,6 +268,7 @@ class Languages(models.Model):
     autoPayButtonOn = models.CharField(max_length=64, verbose_name="Кнопка включения автоплатежа")
     autoPayOff = models.CharField(max_length=64, verbose_name="Выключение автоплатежа")
     autoPayOn = models.CharField(max_length=64, verbose_name="Включение автоплатежа")
+    fundNotEndError = models.TextField(verbose_name="Сбор ещё не закончен")
 
     def __repr__(self):
         return self.name

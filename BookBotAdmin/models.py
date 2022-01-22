@@ -270,6 +270,7 @@ class Languages(models.Model):
     autoPayOff = models.CharField(max_length=64, verbose_name="Выключение автоплатежа")
     autoPayOn = models.CharField(max_length=64, verbose_name="Включение автоплатежа")
     fundNotEndError = models.TextField(verbose_name="Сбор ещё не закончен")
+    downloadError = models.TextField(verbose_name="Ошибка загрузки")
 
     def __repr__(self):
         return self.name

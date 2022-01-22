@@ -17,6 +17,7 @@ class Users(models.Model):
     paymentId = models.CharField(max_length=128, verbose_name="Сохраненный способ оплаты", blank=True, null=True)
     isAutoPay = models.BooleanField(default=True, verbose_name="Автоплатеж")
     lastMenu = models.IntegerField(default=0)
+    subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, default=1)
 
     def __repr__(self):
         return self.username
@@ -93,7 +94,7 @@ class Subscribes(models.Model):
 class Filters(models.Model):
     filterId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название")
-    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True)
+    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык")
     subscribeTimeFrom = models.IntegerField(default=0, verbose_name="Месяцы подписки (От)")
     subscribeTimeTo = models.IntegerField(default=0, verbose_name="Месяцы подписки (До)")
     depositFrom = models.IntegerField(default=0, verbose_name="Депозит (От)")
@@ -131,7 +132,7 @@ class Posts(models.Model):
     text = models.TextField(verbose_name="Текст")
     photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка", blank=True, null=True)
     date = models.DateTimeField(verbose_name="Дата", auto_now=True)
-    filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр", blank=True)
+    filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр", blank=True, null=True)
     isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 
     def __repr__(self):

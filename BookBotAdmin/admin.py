@@ -10,12 +10,12 @@ from django.utils.http import urlencode
 
 @admin.register(models.Users)
 class UsersAdmin(admin.ModelAdmin):
-    list_display = ("userId", "username", "balance", "referral", "isBlock", "languageId", "showProgress")
-    list_display_links = ["userId", "username"]
+    list_display = ("mention", "username", "balance", "referral", "isBlock", "languageId", "showProgress")
+    list_display_links = ["mention", "username"]
     search_fields = ["userId", "username"]
     list_filter = ("balance", "referral", "isBlock")
-    fields = ("userId", "username", "balance", "deposit", "subscribeTime", "referral", "isBlock", "languageId", "showProgress", "notEndPayment")
-    readonly_fields = ("userId", "username", "referral", "isBlock", "languageId", "showProgress", "notEndPayment", "subscribeTime")
+    fields = ("userId", "mention", "username", "balance", "deposit", "subscribeTime", "referral", "isBlock", "languageId", "showProgress", "notEndPayment")
+    readonly_fields = ("userId", "mention", "username", "referral", "isBlock", "languageId", "showProgress", "notEndPayment", "subscribeTime")
 
     def has_add_permission(self, request):
         return False

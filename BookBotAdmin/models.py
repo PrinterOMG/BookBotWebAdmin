@@ -37,7 +37,6 @@ class Promocodes(models.Model):
     promocodeId = models.BigAutoField(primary_key=True)
     promocode = models.CharField(max_length=64, verbose_name="Промокод", unique=True)
     isUsed = models.BooleanField(default=False, verbose_name="Использован ли")
-    whoUsed = models.ForeignKey("Users", on_delete=models.CASCADE, default=None, null=True, verbose_name="Кто использовал", blank=True)
     discount = models.IntegerField(verbose_name="Скидка")
     subPriceId = models.ManyToManyField("SubPrices", verbose_name="На какие подписки")
     isActive = models.BooleanField(default=False, verbose_name="Активен ли")

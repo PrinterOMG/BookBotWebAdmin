@@ -7,9 +7,9 @@ class Users(models.Model):
     username = models.CharField(max_length=128, verbose_name="Имя пользователя")
     mention = models.CharField(max_length=128, verbose_name="Обращение")
     balance = models.IntegerField(default=0, verbose_name="Баланс")
-    referral = models.ForeignKey("Referrals", default=None, null=True, on_delete=models.SET_NULL, verbose_name="Реферал", blank=True)
+    referral = models.ForeignKey("Referrals", default=None, null=True, on_delete=models.CASCADE, verbose_name="Реферал", blank=True)
     isBlock = models.BooleanField(default=False, verbose_name="Заблокировал ли бота")
-    languageId = models.ForeignKey("Languages", on_delete=models.SET_NULL, verbose_name="Язык", blank=True)
+    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True)
     showProgress = models.BooleanField(default=False, verbose_name="Показывать ли прогресс сбора")
     deposit = models.IntegerField(default=0, verbose_name="Депозит")
     subscribeTime = models.IntegerField(default=0, verbose_name="Месяцы подписки")
@@ -17,7 +17,7 @@ class Users(models.Model):
     paymentId = models.CharField(max_length=128, verbose_name="Сохраненный способ оплаты", blank=True, null=True)
     isAutoPay = models.BooleanField(default=True, verbose_name="Автоплатеж")
     lastMenu = models.IntegerField(default=0)
-    subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.SET_NULL, default=1)
+    subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, default=1)
 
     def __repr__(self):
         return self.username
@@ -37,7 +37,7 @@ class Promocodes(models.Model):
     promocodeId = models.BigAutoField(primary_key=True)
     promocode = models.CharField(max_length=64, verbose_name="Промокод", unique=True)
     isUsed = models.BooleanField(default=False, verbose_name="Использован ли")
-    whoUsed = models.ForeignKey("Users", on_delete=models.SET_NULL, default=None, null=True, verbose_name="Кто использовал", blank=True)
+    whoUsed = models.ForeignKey("Users", on_delete=models.CASCADE, default=None, null=True, verbose_name="Кто использовал", blank=True)
     discount = models.IntegerField(verbose_name="Скидка")
     subPriceId = models.ManyToManyField("SubPrices", verbose_name="На какие подписки")
     isActive = models.BooleanField(default=False, verbose_name="Активен ли")
@@ -58,7 +58,7 @@ class Questions(models.Model):
     text = models.TextField(verbose_name="Текст")
     answer = models.TextField(default=None, null=True, verbose_name="Ответ")
     isAnswered = models.BooleanField(default=False, verbose_name="Отвечен ли")
-    fromUser = models.ForeignKey("Users", on_delete=models.SET_NULL, verbose_name="От пользователя")
+    fromUser = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="От пользователя")
     date = models.DateTimeField(verbose_name="Дата вопроса", auto_created=True, auto_now=True)
 
     def __repr__(self):
@@ -77,8 +77,8 @@ class Subscribes(models.Model):
     startDate = models.DateField(auto_now_add=True, verbose_name="Дата начала")
     endDate = models.DateField(verbose_name="Дата конца")
     isActive = models.BooleanField(default=True, verbose_name="Активна ли")
-    subPriceId = models.ForeignKey("SubPrices", on_delete=models.SET_NULL, verbose_name="Подписка")
-    user = models.ForeignKey("Users", on_delete=models.SET_NULL, verbose_name="Пользователь")
+    subPriceId = models.ForeignKey("SubPrices", on_delete=models.CASCADE, verbose_name="Подписка")
+    user = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="Пользователь")
 
     def __repr__(self):
         return f"Подписка"
@@ -94,14 +94,14 @@ class Subscribes(models.Model):
 class Filters(models.Model):
     filterId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название")
-    languageId = models.ForeignKey("Languages", on_delete=models.SET_NULL, verbose_name="Язык")
+    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык")
     subscribeTimeFrom = models.IntegerField(default=0, verbose_name="Месяцы подписки (От)")
     subscribeTimeTo = models.IntegerField(default=0, verbose_name="Месяцы подписки (До)")
     depositFrom = models.IntegerField(default=0, verbose_name="Депозит (От)")
     depositTo = models.IntegerField(default=0, verbose_name="Депозит (До)")
     balanceFrom = models.IntegerField(default=0, verbose_name="Баланс (От)")
     balanceTo = models.IntegerField(default=0, verbose_name="Баланс (До)")
-    subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.SET_NULL, verbose_name="Статус подписки", blank=True, null=True, default=None)
+    subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, verbose_name="Статус подписки", blank=True, null=True, default=None)
     notEndPayment = models.BooleanField(default=False, verbose_name="Не завершил оплату")
 
     def __repr__(self):
@@ -132,7 +132,7 @@ class Posts(models.Model):
     text = models.TextField(verbose_name="Текст")
     photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка", blank=True, null=True)
     date = models.DateTimeField(verbose_name="Дата", auto_now=True)
-    filter = models.ForeignKey("Filters", on_delete=models.SET_NULL, verbose_name="Фильтр", blank=True, null=True)
+    filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр", blank=True, null=True)
     isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 
     def __repr__(self):
@@ -319,12 +319,12 @@ class Settings(models.Model):
 
 class Operations(models.Model):
     operationId = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey("Users", on_delete=models.SET_NULL, verbose_name="Пользователь")
+    user = models.ForeignKey("Users", on_delete=models.CASCADE, verbose_name="Пользователь")
     type = models.CharField(max_length=128, verbose_name="Тип")
     topUp = models.IntegerField(blank=True, null=True, verbose_name="Сумма пополнения")
-    bookFund = models.ForeignKey("Books", on_delete=models.SET_NULL, verbose_name="Книга из фандрайзинга", blank=True, null=True)
+    bookFund = models.ForeignKey("Books", on_delete=models.CASCADE, verbose_name="Книга из фандрайзинга", blank=True, null=True)
     bookArchive = models.IntegerField(blank=True, null=True, verbose_name="Книга из архива")
-    subscribe = models.ForeignKey("SubPrices", on_delete=models.SET_NULL, verbose_name="Подписка")
+    subscribe = models.ForeignKey("SubPrices", on_delete=models.CASCADE, verbose_name="Подписка")
     paymentMethod = models.CharField(max_length=128, verbose_name="Способ оплаты", blank=True, null=True)
 
 

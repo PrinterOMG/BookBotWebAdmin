@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Users(models.Model):
-    userId = models.IntegerField(primary_key=True, verbose_name="ID пользователя в Telegram")
+    userId = models.BigIntegerField(primary_key=True, verbose_name="ID пользователя в Telegram")
     username = models.CharField(max_length=128, verbose_name="Имя пользователя")
     mention = models.CharField(max_length=128, verbose_name="Обращение")
     balance = models.IntegerField(default=0, verbose_name="Баланс")
@@ -271,6 +271,8 @@ class Languages(models.Model):
     autoPayOn = models.CharField(max_length=64, verbose_name="Включение автоплатежа")
     fundNotEndError = models.TextField(verbose_name="Сбор ещё не закончен")
     downloadError = models.TextField(verbose_name="Ошибка загрузки")
+    successAutoPay = models.CharField(max_length=64, verbose_name="Сообщение об успешном списании по подписке")
+    subscribeOff = models.CharField(max_length=64, verbose_name="Сообщение об отключении подписки по неуплате")
 
     def __repr__(self):
         return self.name

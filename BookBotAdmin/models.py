@@ -264,16 +264,16 @@ class Languages(models.Model):
     progressOn = models.TextField(verbose_name="Отображение прогресса включено")
     progressOff = models.TextField(verbose_name="Отображение прогресса выключено")
     telegramPayLimit = models.TextField(verbose_name="Минимальный лимит пополнения через Телеграм 60 рублей")
-    bookDoneNotify = models.TextField(verbose_name="Уведолмение пользователя о окончании сбора ({title})")
+    bookDoneNotify = models.TextField(verbose_name="Уведомление пользователя о окончании сбора ({title})")
     closeButton = models.CharField(max_length=64, verbose_name="Кнопка закрыть")
     autoPayButtonOff = models.CharField(max_length=64, verbose_name="Кнопка выключения автоплатежа")
     autoPayButtonOn = models.CharField(max_length=64, verbose_name="Кнопка включения автоплатежа")
     autoPayOff = models.CharField(max_length=64, verbose_name="Выключение автоплатежа")
     autoPayOn = models.CharField(max_length=64, verbose_name="Включение автоплатежа")
     fundNotEndError = models.TextField(verbose_name="Сбор ещё не закончен")
-    downloadError = models.TextField(verbose_name="Ошибка загрузки")
     successAutoPay = models.CharField(max_length=64, verbose_name="Сообщение об успешном списании по подписке")
     subscribeOff = models.CharField(max_length=64, verbose_name="Сообщение об отключении подписки по неуплате")
+    downloadResult = models.TextField(verbose_name="Вывод ссылки для скачивания ({link})")
 
     def __repr__(self):
         return self.name

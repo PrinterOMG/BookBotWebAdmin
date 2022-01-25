@@ -126,6 +126,29 @@ def get_stats(request):
         progress = "100%" if book.collectedSum > book.goalSum else f"{round((book.collectedSum / book.goalSum) * 100)}%"
         fundraising_data["Прогресс"].append(progress)
 
+    archive_stat_data = {
+        "id": [],
+        "Заголовок": [],
+        "Автор": [],
+        "Год": [],
+        "Жанр": [],
+        "Ссылка на книгу": [],
+        "Цена архивной книги": [],
+        "Кол-во обращений": [],
+        "Кол-во покупок": []
+    }
+
+    for arc_book in ArchiveStatistic.objects.all():
+        archive_stat_data["id"].append(arc_book.archivebookId)
+        archive_stat_data["Заголовок"].append(arc_book.archivebookId)
+        archive_stat_data["Автор"].append(arc_book.archivebookId)
+        archive_stat_data["Год"].append(arc_book.archivebookId)
+        archive_stat_data["Жанр"].append(arc_book.archivebookId)
+        archive_stat_data["Ссылка на книгу"].append(arc_book.archivebookId)
+        archive_stat_data["Цена архивной книги"].append(arc_book.archivebookId)
+        archive_stat_data["Кол-во обращений"].append(arc_book.archivebookId)
+        archive_stat_data["ЖКол-во покупок"].append(arc_book.archivebookId)
+
     file_path = r"static/stats.xlsx"
     writer = pd.ExcelWriter(file_path, engine='xlsxwriter')
 
@@ -134,6 +157,7 @@ def get_stats(request):
     pd.DataFrame(subscribes_data).to_excel(writer, sheet_name="Подписки", index=False)
     pd.DataFrame(referrals_data).to_excel(writer, sheet_name="Реферальные коды", index=False)
     pd.DataFrame(statistics_data).to_excel(writer, sheet_name="Статистика", index=False)
+    pd.DataFrame(archive_stat_data).to_excel(writer, sheet_name="Статистика архив", index=False)
 
     writer.save()
     writer.close()

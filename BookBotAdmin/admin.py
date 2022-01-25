@@ -14,8 +14,12 @@ class UsersAdmin(admin.ModelAdmin):
     list_display_links = ["mention", "username"]
     search_fields = ["userId", "username"]
     list_filter = ("balance", "referral", "isBlock")
-    fields = ("userId", "mention", "username", "balance", "deposit", "subscribeTime", "referral", "isBlock", "languageId", "showProgress", "notEndPayment")
-    readonly_fields = ("userId", "mention", "username", "referral", "isBlock", "languageId", "showProgress", "notEndPayment", "subscribeTime")
+    fields = (
+    "userId", "mention", "username", "balance", "deposit", "subscribeTime", "referral", "isBlock", "languageId",
+    "showProgress", "notEndPayment")
+    readonly_fields = (
+    "userId", "mention", "username", "referral", "isBlock", "languageId", "showProgress", "notEndPayment",
+    "subscribeTime")
 
     def has_add_permission(self, request):
         return False
@@ -82,7 +86,8 @@ class SettingsAdmin(admin.ModelAdmin):
 @admin.register(models.Books)
 class BooksAdmin(admin.ModelAdmin):
     list_display = ["name", "startDate", "endDate", "goalSum", "collectedSum", "isDone"]
-    fields = ["name", "description", "startDate", "endDate", "goalSum", "collectedSum", "link", "isDone", "priceAfterDone", "priceForSub", "priceCommon", "userId"]
+    fields = ["name", "description", "startDate", "endDate", "goalSum", "collectedSum", "link", "isDone",
+              "priceAfterDone", "priceForSub", "priceCommon", "userId"]
     readonly_fields = ["collectedSum", "isDone", "userId"]
 
 
@@ -115,12 +120,14 @@ class PostsAdmin(admin.ModelAdmin):
 @admin.register(models.Statistic)
 class Statistic(admin.ModelAdmin):
     list_display = ["name", "subs_link", "ref_link", "fund_books"]
-    fields = ["name", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
-    readonly_fields = ["allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
+    fields = ["name", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount",
+              "archiveBooksSum", "archiveBooksCount"]
+    readonly_fields = ["allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount",
+                       "archiveBooksSum", "archiveBooksCount"]
 
     def subs_link(self, obj):
         url = (
-                reverse("admin:BookBotAdmin_subscribes_changelist")
+            reverse("admin:BookBotAdmin_subscribes_changelist")
         )
         return format_html('<a href="{}">Подписки</a>', url)
 
@@ -147,3 +154,10 @@ class Statistic(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(models.ArchiveStatistic)
+class ArchiveStatistic(admin.ModelAdmin):
+    list_display = ["title", "appeal", "buy_count"]
+    fields = ["archivebookId", "title", "author", "year", "genre", "link", "price", "appeal", "buy_count"]
+    readonly_fields = ["archivebookId", "title", "author", "year", "genre", "link", "price", "appeal", "buy_count"]

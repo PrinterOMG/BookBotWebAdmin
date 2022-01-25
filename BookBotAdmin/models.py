@@ -356,7 +356,7 @@ class Statistic(models.Model):
 
 
 class ArchiveStatistic(models.Model):
-    bookId = models.IntegerField(primary_key=True)
+    archivebookId = models.IntegerField(primary_key=True)
     title = models.TextField(verbose_name="Заголовок")
     author = models.TextField(verbose_name="Автор")
     year = models.TextField(verbose_name="Год")

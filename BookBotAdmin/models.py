@@ -354,3 +354,25 @@ class Statistic(models.Model):
         verbose_name = "Статистика"
         verbose_name_plural = "Статистика"
 
+
+class ArchiveStatistic(models.Model):
+    bookId = models.IntegerField(primary_key=True)
+    title = models.TextField(verbose_name="Заголовок")
+    author = models.TextField(verbose_name="Автор")
+    year = models.TextField(verbose_name="Год")
+    genre = models.TextField(verbose_name="Жанр")
+    link = models.TextField(verbose_name="Ссылка на книгу")
+    price = models.TextField(verbose_name="Цена архивной книги")
+    appeal = models.IntegerField(default=0, verbose_name="Кол-во обращений")
+    buy_count = models.IntegerField(default=0, verbose_name="Кол-во покупок")
+
+    def __repr__(self):
+        return "Статистика архива книг"
+
+    def __str__(self):
+        return "Статистика архива книг"
+
+    class Meta:
+        verbose_name = "Статистика архива книг"
+        verbose_name_plural = "Статистика архива книг"
+

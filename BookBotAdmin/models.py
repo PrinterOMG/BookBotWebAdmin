@@ -18,6 +18,7 @@ class Users(models.Model):
     isAutoPay = models.BooleanField(default=True, verbose_name="Автоплатеж")
     lastMenu = models.IntegerField(default=0)
     subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, default=1)
+    books = models.TextField()
 
     def __repr__(self):
         return self.username

@@ -116,7 +116,7 @@ class PostsAdmin(admin.ModelAdmin):
 class Statistic(admin.ModelAdmin):
     list_display = ["name", "subs_link", "ref_link", "fund_books"]
     fields = ["name", "allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
-    # readonly_fields = ["allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
+    readonly_fields = ["allSubsCounter", "noBuyUsersCounter", "blockUsersCounter", "interruptedPaymentsCount", "archiveBooksSum", "archiveBooksCount"]
 
     def subs_link(self, obj):
         url = (

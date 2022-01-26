@@ -45,7 +45,7 @@ class ReferralAdmin(admin.ModelAdmin):
 
     list_display = ["name", "code", "link", "registerCount"]
     fields = ["name", "code", "link", "registerCount"]
-    readonly_fields = ["registerCount", "link", "code"]
+    readonly_fields = ["registerCount", "link"]
 
 
 @admin.register(models.SubPrices)

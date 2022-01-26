@@ -38,9 +38,14 @@ class LanguagesAdmin(admin.ModelAdmin):
 
 @admin.register(models.Referrals)
 class ReferralAdmin(admin.ModelAdmin):
-    list_display = ["name", "code", "registerCount"]
-    fields = ["name", "code", "registerCount"]
-    readonly_fields = ["registerCount"]
+    def save_model(self, request, obj, form, change):
+        obj.link = "t.me/thesombot?start=" + obj.code
+
+        return super().save_model(request, obj, form, change)
+
+    list_display = ["name", "code", "link", "registerCount"]
+    fields = ["name", "code", "link", "registerCount"]
+    readonly_fields = ["registerCount", "link", "code"]
 
 
 @admin.register(models.SubPrices)

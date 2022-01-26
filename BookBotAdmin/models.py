@@ -289,7 +289,7 @@ class Languages(models.Model):
 class Referrals(models.Model):
     referralId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=128, verbose_name="Название")
-    code = models.CharField(max_length=128, verbose_name="Код")
+    code = models.CharField(max_length=128, verbose_name="Код", unique=True)
     link = models.CharField(max_length=256, verbose_name="Ссылка", blank=True, null=True)
     registerCount = models.IntegerField(default=0, verbose_name="Кол-во регистраций")
 

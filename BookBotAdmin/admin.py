@@ -117,8 +117,8 @@ class FiltersAdmin(admin.ModelAdmin):
 
 @admin.register(models.Posts)
 class PostsAdmin(admin.ModelAdmin):
-    list_display = ["title", "isSend", "date"]
-    fields = ["title", "text", "photo", "date", "filter", "isSend"]
+    list_display = ["title", "isSend", "date", "sendDate"]
+    fields = ["title", "text", "photo", "date", "filter", "isSend", "sendDate"]
     readonly_fields = ["date", "isSend"]
 
 

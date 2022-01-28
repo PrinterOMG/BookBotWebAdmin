@@ -267,6 +267,7 @@ class Languages(models.Model):
     telegramPayLimit = models.TextField(verbose_name="Минимальный лимит пополнения через Телеграм 60 рублей")
     bookDoneNotify = models.TextField(verbose_name="Уведомление пользователя о окончании сбора ({title})")
     closeButton = models.CharField(max_length=64, verbose_name="Кнопка закрыть")
+    closeConfirm = models.TextField(verbose_name="Подтверждение закрытия")
     autoPayButtonOff = models.CharField(max_length=64, verbose_name="Кнопка выключения автоплатежа")
     autoPayButtonOn = models.CharField(max_length=64, verbose_name="Кнопка включения автоплатежа")
     autoPayOff = models.CharField(max_length=64, verbose_name="Выключение автоплатежа")

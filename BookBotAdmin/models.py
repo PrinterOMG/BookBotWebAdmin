@@ -277,6 +277,7 @@ class Languages(models.Model):
     successAutoPay = models.CharField(max_length=64, verbose_name="Сообщение об успешном списании по подписке")
     subscribeOff = models.CharField(max_length=64, verbose_name="Сообщение об отключении подписки по неуплате")
     downloadResult = models.TextField(verbose_name="Вывод ссылки для скачивания ({link})")
+    blockMenuInfo = models.CharField(max_length=128, verbose_name="Сообщение о блокировки выхода во время оплаты")
 
     def __repr__(self):
         return self.name

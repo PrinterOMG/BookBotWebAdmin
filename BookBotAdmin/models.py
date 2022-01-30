@@ -19,6 +19,7 @@ class Users(models.Model):
     lastMenu = models.IntegerField(default=0)
     subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, default=1)
     buyBooks = models.TextField()
+    isPaying = models.BooleanField(default=0, verbose_name="Индикатор состояния оплаты")
 
     def __repr__(self):
         return self.username

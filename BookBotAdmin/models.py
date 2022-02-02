@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.urls import reverse
 
@@ -132,8 +134,8 @@ class Posts(models.Model):
     title = models.CharField(max_length=64, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
     photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка", blank=True, null=True)
-    date = models.DateTimeField(verbose_name="Дата", auto_now=True)
-    sendDate = models.DateTimeField(verbose_name="Дата отправки", blank=True, null=True)
+    date = models.DateTimeField(verbose_name="Дата", auto_now_add=True)
+    sendDate = models.DateTimeField(verbose_name="Дата отправки", blank=True, null=True, auto_now_add=True, default=datetime.datetime.now())
     filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр", blank=True, null=True)
     isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 

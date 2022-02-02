@@ -137,7 +137,7 @@ class Posts(models.Model):
     text = models.TextField(verbose_name="Текст")
     photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка", blank=True, null=True)
     date = models.DateTimeField(verbose_name="Дата", auto_now_add=True)
-    sendDate = models.DateTimeField(verbose_name="Дата отправки", blank=True, null=True, default=django.utils.timezone.now)
+    sendDate = models.DateTimeField(verbose_name="Дата отправки", null=True, default=django.utils.timezone.now)
     filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр", blank=True, null=True)
     isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 

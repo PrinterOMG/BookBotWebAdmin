@@ -21,6 +21,7 @@ class Users(models.Model):
     lastMenu = models.IntegerField(default=0)
     subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, default=1)
     buyBooks = models.TextField()
+    isPaying = models.BooleanField(default=0, verbose_name="Индикатор состояния оплаты")
 
     def __repr__(self):
         return self.username
@@ -278,6 +279,7 @@ class Languages(models.Model):
     successAutoPay = models.CharField(max_length=64, verbose_name="Сообщение об успешном списании по подписке")
     subscribeOff = models.CharField(max_length=64, verbose_name="Сообщение об отключении подписки по неуплате")
     downloadResult = models.TextField(verbose_name="Вывод ссылки для скачивания ({link})")
+    blockMenuInfo = models.CharField(max_length=128, verbose_name="Сообщение о блокировки выхода во время оплаты")
 
     def __repr__(self):
         return self.name

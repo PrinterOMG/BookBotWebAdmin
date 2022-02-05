@@ -99,7 +99,7 @@ class Subscribes(models.Model):
 class Filters(models.Model):
     filterId = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="Название")
-    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык")
+    languageId = models.ForeignKey("Languages", on_delete=models.CASCADE, verbose_name="Язык", blank=True, null=True)
     subscribeTimeFrom = models.IntegerField(default=0, verbose_name="Месяцы подписки (От)")
     subscribeTimeTo = models.IntegerField(default=0, verbose_name="Месяцы подписки (До)")
     depositFrom = models.IntegerField(default=0, verbose_name="Депозит (От)")

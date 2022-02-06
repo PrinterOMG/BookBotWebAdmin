@@ -107,7 +107,7 @@ class Filters(models.Model):
     balanceFrom = models.IntegerField(default=0, verbose_name="Баланс (От)")
     balanceTo = models.IntegerField(default=0, verbose_name="Баланс (До)")
     subscribeStatus = models.ForeignKey("SubscribeStatus", on_delete=models.CASCADE, verbose_name="Статус подписки", blank=True, null=True, default=None)
-    notEndPayment = models.BooleanField(default=False, verbose_name="Не завершил оплату")
+    notEndPayment = models.ForeignKey("PaymentStatus", on_delete=models.CASCADE, verbose_name="Не закончил оплату", null=True, default=None)
 
     def __repr__(self):
         return self.name
@@ -384,3 +384,7 @@ class ArchiveStatistic(models.Model):
         verbose_name = "Статистика архива книг"
         verbose_name_plural = "Статистика архива книг"
 
+
+class PaymentStatus(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=64)

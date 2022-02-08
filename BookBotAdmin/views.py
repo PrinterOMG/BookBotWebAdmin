@@ -147,7 +147,7 @@ def get_stats(request):
         archive_stat_data["Ссылка на книгу"].append(arc_book.archivebookId)
         archive_stat_data["Цена архивной книги"].append(arc_book.archivebookId)
         archive_stat_data["Кол-во обращений"].append(arc_book.archivebookId)
-        archive_stat_data["ЖКол-во покупок"].append(arc_book.archivebookId)
+        archive_stat_data["Кол-во покупок"].append(arc_book.archivebookId)
 
     file_path = r"static/stats.xlsx"
     writer = pd.ExcelWriter(file_path, engine='xlsxwriter')

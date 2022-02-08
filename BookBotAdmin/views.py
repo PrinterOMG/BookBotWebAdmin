@@ -140,14 +140,14 @@ def get_stats(request):
 
     for arc_book in ArchiveStatistic.objects.all():
         archive_stat_data["id"].append(arc_book.archivebookId)
-        archive_stat_data["Заголовок"].append(arc_book.archivebookId)
-        archive_stat_data["Автор"].append(arc_book.archivebookId)
-        archive_stat_data["Год"].append(arc_book.archivebookId)
-        archive_stat_data["Жанр"].append(arc_book.archivebookId)
-        archive_stat_data["Ссылка на книгу"].append(arc_book.archivebookId)
-        archive_stat_data["Цена архивной книги"].append(arc_book.archivebookId)
-        archive_stat_data["Кол-во обращений"].append(arc_book.archivebookId)
-        archive_stat_data["Кол-во покупок"].append(arc_book.archivebookId)
+        archive_stat_data["Заголовок"].append(arc_book.title)
+        archive_stat_data["Автор"].append(arc_book.author)
+        archive_stat_data["Год"].append(arc_book.year)
+        archive_stat_data["Жанр"].append(arc_book.genre)
+        archive_stat_data["Ссылка на книгу"].append(arc_book.link)
+        archive_stat_data["Цена архивной книги"].append(arc_book.price)
+        archive_stat_data["Кол-во обращений"].append(arc_book.appeal)
+        archive_stat_data["Кол-во покупок"].append(arc_book.buy_count)
 
     file_path = r"static/stats.xlsx"
     writer = pd.ExcelWriter(file_path, engine='xlsxwriter')

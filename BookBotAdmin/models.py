@@ -144,9 +144,9 @@ class Posts(models.Model):
 
     def clean(self):
         if self.photo and (len(self.text) + len(self.title) >= 1024):
-            raise ValidationError()
+            raise ValidationError("ERROR 1")
         elif not self.photo and (len(self.text) + len(self.title) > 4096):
-            raise ValidationError()
+            raise ValidationError("ERROR 2")
 
     def __repr__(self):
         return self.title

@@ -141,6 +141,12 @@ class Posts(models.Model):
     filter = models.ForeignKey("Filters", on_delete=models.CASCADE, verbose_name="Фильтр", blank=True, null=True)
     isSend = models.BooleanField(verbose_name="Отправлен ли", default=False)
 
+    def clean(self):
+        if self.photo and (len(self.text) + len(self.title) >= 1024):
+            raise ValidationError()
+        elif not self.photo and (len(self.text) + len(self.title) > 4096):
+            raise ValidationError()
+
     def __repr__(self):
         return self.title
 

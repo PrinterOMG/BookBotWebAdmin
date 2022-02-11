@@ -144,9 +144,9 @@ class Posts(models.Model):
 
     def clean(self):
         if self.photo and (len(self.text) + len(self.title) >= 1024):
-            raise ValidationError("ERROR 1")
+            raise ValidationError("Пост с картинкой не должен быть длинее 1024 символов")
         elif not self.photo and (len(self.text) + len(self.title) > 4096):
-            raise ValidationError("ERROR 2")
+            raise ValidationError("Пост не должен быть длинне 4096 символов")
 
     def __repr__(self):
         return self.title

@@ -135,7 +135,7 @@ class SubscribeStatus(models.Model):
 
 class Posts(models.Model):
     postId = models.BigAutoField(primary_key=True)
-    title = models.TextField(validators=[MaxLengthValidator(limit_value=64, message="error")], verbose_name="Заголовок")
+    title = models.TextField(validators=[MaxLengthValidator(limit_value=64, message="Ограничение заголовка - 64 символа")], verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
     photo = models.ImageField(upload_to="imgs/posts/", verbose_name="Картинка", blank=True, null=True)
     date = models.DateTimeField(verbose_name="Дата", auto_now_add=True)
